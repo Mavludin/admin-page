@@ -3,27 +3,56 @@ import './main.css';
 
 import LoginPage from './containers/login-page/login';
 import Header from './components/header/header';
-
-import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import Footer from './components/footer/footer';
+import Dashboard from './containers/dashboard/dashboard';
 
-const App = () => {
-  return (
+import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-    <BrowserRouter>
-        <div className="App">
-          <Header />
+class App extends React.Component {
 
-            <div>
-              <Switch>
-                <Route path="/login" component={LoginPage} />
-              </Switch>
-            </div>
+  state = {
+    loggedInStatus: localStorage[('isLogged')] === 'true'
+  }
 
-          <Footer />
-        </div>
-    </BrowserRouter>
-  );
+  onUserLoggedIn = () => {
+    this.setState({loggedInStatus: true});
+  }
+
+  onUserLoggedOut = () => {
+    localStorage.setItem('isLogged', false);
+    this.setState({loggedInStatus: false});
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+          <div className="App">
+            <Header onUserLoggedOut={this.onUserLoggedOut} userLoggedInStatus={this.state.loggedInStatus} />
+  
+              <div>
+                <Switch>
+
+                  <Route path="/login"
+                    render=
+                    {
+                      (props) => !this.state.loggedInStatus ? 
+                      <LoginPage {...props} onUserLoggedIn = {this.onUserLoggedIn} />
+                      :
+                      <Redirect to="/dashboard" />
+                      
+                    }
+                  />
+
+                  <Route path="/dashboard" component={Dashboard} />
+
+                </Switch>
+              </div>
+  
+            <Footer />
+          </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

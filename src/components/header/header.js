@@ -1,7 +1,14 @@
 import React from 'react';
 import './header.css';
 
-const Header = () => {
+import { Link } from 'react-router-dom';
+
+const Header = (props) => {
+
+    const LoggedOut = () => {
+        props.onUserLoggedOut();
+    }
+
     return (
         <header>
             <div className="header-content container">
@@ -14,12 +21,17 @@ const Header = () => {
                         </a>
                     </div>
 
-                    <div>
-                        <a className="nav-link" href="/">
-                            <i className="far fa-file-alt"></i>
-                            <p>Reports <i className="fas fa-angle-down"></i></p> 
-                        </a>
-                    </div>
+                    {   
+                        props.userLoggedInStatus ?
+                            <div>
+                                <a className="nav-link" href="/">
+                                    <i className="far fa-file-alt"></i>
+                                    <p>Reports <i className="fas fa-angle-down"></i></p> 
+                                </a>
+                            </div>
+                        : null
+
+                    }
 
                     <div>
                         <a className="nav-link" href="/">
@@ -34,13 +46,34 @@ const Header = () => {
                         </a>
                     </div>
 
-                    <div>
-                        <a className="nav-link" href="/">
-                            <i className="fas fa-cog"></i>
-                            <p>Settings <i className="fas fa-angle-down"></i></p> 
-                        </a>
-                    </div>
+                    {   
+                        props.userLoggedInStatus ?
+                            <div>
+                                <a className="nav-link" href="/">
+                                    <i className="fas fa-cog"></i>
+                                    <p>Settings <i className="fas fa-angle-down"></i></p> 
+                                </a>
+                            </div>
+                        : null
+
+                    }
+
                 </nav>
+
+                {
+                    props.userLoggedInStatus ?
+
+                    <div>
+                        <Link onClick={LoggedOut} className="nav-link" to="/login">
+
+                            { JSON.parse(localStorage[('userData')]).userName }, <span>Logout</span>
+
+                        </Link>
+                    </div>
+
+                    : null
+                }
+
             </div>
         </header>
     )

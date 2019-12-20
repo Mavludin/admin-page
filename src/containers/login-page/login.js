@@ -1,30 +1,22 @@
 import React from 'react';
 import './login.css';
 
-import { Link } from 'react-router-dom';
-
-class  LoginPage extends React.Component {
+class LoginPage extends React.Component {
 
     state = {
-        isLogged: false,
         userName: '',
         userPassword: '' 
     }
 
     toLocalStorage = () => {
 
-        const userNamePattern = /^[a-zA-Z0-9]+$/;
-        const userPasswordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+        localStorage.setItem('userData', JSON.stringify({
+            'userName': this.state.userName,
+            'userPassword': this.state.userPassword,
+        }))
+        localStorage.setItem('isLogged', true);
 
-        if (this.state.userName.match(userNamePattern) && this.state.userPassword.match(userPasswordPattern)) {
-            this.setState({isLogged: true});
-
-            localStorage.setItem('userData', JSON.stringify({
-                'userName': this.state.userName,
-                'userPassword': this.state.userPassword,
-                'isLogged': this.state.isLogged
-            }))
-        }
+        this.props.onUserLoggedIn();
 
     }
 
@@ -38,9 +30,12 @@ class  LoginPage extends React.Component {
 
         if (e.target.value.match(userPasswordPattern)) {
             e.target.style.backgroundColor = 'green';
-        } else e.target.style.backgroundColor = '#54657d';
+            this.setState({userPassword: e.target.value});
+        } else {
+            e.target.style.backgroundColor = '#54657d';
+            return;
+        }
 
-        this.setState({userPassword: e.target.value});
     }
 
     render() {
@@ -59,9 +54,9 @@ class  LoginPage extends React.Component {
                     <div>
                         <button onClick={this.toLocalStorage}>Login</button>
                     </div>
-                    <div>
+                    {/* <div>
                         <button>Forgot your password?</button>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         )
