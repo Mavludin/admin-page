@@ -12,47 +12,47 @@ const Header = (props) => {
     return (
         <header>
             <div className="header-content container">
-                <a href="/"><h1>Product Admin</h1></a>
+                <Link to="/"><h1>Product Admin</h1></Link>
                 <nav>
                     <div>
-                        <a className="nav-link" href="/">
+                        <Link className="nav-link" to="/dashboard">
                             <i className="fas fa-tachometer-alt"></i>
                             <p>Dashboard</p> 
-                        </a>
+                        </Link>
                     </div>
 
                     {   
                         props.userLoggedInStatus ?
                             <div>
-                                <a className="nav-link" href="/">
+                                <Link className="nav-link" to="/">
                                     <i className="far fa-file-alt"></i>
                                     <p>Reports <i className="fas fa-angle-down"></i></p> 
-                                </a>
+                                </Link>
                             </div>
                         : null
 
                     }
 
                     <div>
-                        <a className="nav-link" href="/">
+                        <Link className="nav-link" to="/products">
                             <i className="fas fa-shopping-cart"></i>
                             <p>Products</p> 
-                        </a>
+                        </Link>
                     </div>
                     <div>
-                        <a className="nav-link" href="/">
+                        <Link className="nav-link" to="/accounts">
                             <i className="far fa-user"></i>
                             <p>Accounts</p> 
-                        </a>
+                        </Link>
                     </div>
 
                     {   
                         props.userLoggedInStatus ?
                             <div>
-                                <a className="nav-link" href="/">
+                                <Link className="nav-link" to="/">
                                     <i className="fas fa-cog"></i>
                                     <p>Settings <i className="fas fa-angle-down"></i></p> 
-                                </a>
+                                </Link>
                             </div>
                         : null
 

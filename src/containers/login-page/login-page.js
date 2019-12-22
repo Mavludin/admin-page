@@ -13,11 +13,11 @@ class LoginPage extends React.Component {
         localStorage.setItem('userData', JSON.stringify({
             'userName': this.state.userName,
             'userPassword': this.state.userPassword,
-        }))
+        }));
+
         localStorage.setItem('isLogged', true);
-
         this.props.onUserLoggedIn();
-
+        this.props.history.push('/dashboard');
     }
 
     getUserName = (e) => {
@@ -40,7 +40,7 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <div className="login-page">
+            <div className="login-page mt-5">
                 <form onSubmit={(e)=>e.preventDefault(e)}>
                     <h3>Welcome to Dashboard, Login</h3>
                     <div> 
@@ -54,9 +54,6 @@ class LoginPage extends React.Component {
                     <div>
                         <button onClick={this.toLocalStorage}>Login</button>
                     </div>
-                    {/* <div>
-                        <button>Forgot your password?</button>
-                    </div> */}
                 </form>
             </div>
         )

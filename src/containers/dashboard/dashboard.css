@@ -1,0 +1,147 @@
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stats>div {
+    position: relative;
+
+    width: 48%;
+    padding: 40px;
+    background-color: #435c70;
+    box-shadow: 1px 1px 5px 0 #455c71;
+    min-height: 350px;
+    height: 100%;
+    max-height: 435px;
+
+    margin-bottom: 20px;
+}
+
+.dashboard h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.order {
+    background-color: #435c70;
+    width: 100%;
+
+    padding: 40px;
+    box-shadow: 1px 1px 5px 0 #455c71;
+    min-height: 350px;
+    height: 100%;
+    max-height: 450px;
+
+    overflow-y: scroll;
+}
+
+.notification{
+    overflow: hidden;
+}
+
+.notification-block {
+    overflow-y: scroll;
+    height: 335px;
+}
+
+.notification-item {
+    padding: 15px;
+    background-color: #4e657a;
+    color: #fff;
+    font-size: 90%;
+    display: flex;
+}
+
+.notification-item + .notification-item {
+    margin-top: 15px;
+}
+
+.notification-thumbnail>img {
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.notification-desc {
+    padding: 0 10px;
+}
+
+.notification-desc>p {
+    margin-bottom: .5rem;
+    margin-top: 5px;
+}
+
+.notification-desc>span {
+    font-size: 90%;
+    color: #bdcbd8;
+}
+
+.table {
+    background-color: #50697f;
+    color: #fff;
+    font-size: 85%;
+    margin-bottom: 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead {
+    background-color: #486177;
+    color: #fff;
+}
+
+.table thead th {
+    border-bottom: 0;
+    vertical-align: bottom;
+}
+
+.table th, .table td {
+    border-top: 1px solid #415a70;
+    padding: 15px 25px;
+    vertical-align: middle
+}
+
+.moving {
+    background-color: #9be64d;
+    box-shadow: 0 0 8px #9be64d, inset 0 0 8px #9be64d;
+}
+
+.pending {
+    background-color: #efc54b;
+    box-shadow: 0 0 8px #efc54b, inset 0 0 8px #efc54b;
+}
+
+.cancelled {
+    background-color: #da534f;
+    box-shadow: 0 0 8px #da534f, inset 0 0 8px #da534f;
+}
+
+.delivered {
+    background-color: #3889fc;
+    box-shadow: 0 0 8px #3889fc, inset 0 0 8px #3889fc;
+}
+
+.tm-status-circle {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-top: -3px;
+}
+
+@media screen and (max-width: 992px) {
+    .stats {
+        flex-wrap: wrap;
+        flex-flow: column;
+    }
+
+    .stats>div {
+        width: 100%;
+    }
+
+}

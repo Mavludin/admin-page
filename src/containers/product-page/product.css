@@ -1,0 +1,151 @@
+.product-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product-block, .category-block {
+    margin-bottom: 30px;
+}
+
+.product-block {
+    background-color: #435c70;
+    padding: 40px;
+    box-shadow: 1px 1px 5px 0 #455c71;
+    min-height: 350px;
+    height: 100%;
+    overflow: hidden;
+    min-height: 725px;
+}
+
+.product-table-container {
+    max-height: 465px;
+    margin-bottom: 15px;
+    overflow-y: scroll;
+}
+
+.table {
+    background-color: #50697f;
+    color: #fff;
+    font-size: 85%;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+input {
+    outline: unset;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #394e64;
+    background-position: center;
+    border-radius: 50%;
+    box-sizing: border-box;
+    position: relative;
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    transition: all 0.1s linear;
+}
+
+.tm-product-delete-link {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #394e64;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.tm-product-delete-icon {
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.tm-product-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.table-hover tbody tr {
+    transition: all 0.2s ease;
+    cursor: pointer
+}
+
+.table-hover tbody tr:hover {
+    color: #a0c0de;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0,0,0,.075);
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #f5a623;
+    border: 2px solid #f5a623;
+    font-size: 90%;
+    font-weight: 600;
+}
+
+.btn {
+    border-radius: 0;
+    padding: 13px 28px;
+    transition: all 0.2s ease;
+    max-width: 100%;
+    text-align: center;
+}
+
+.text-uppercase {
+    text-transform: uppercase!important;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+
+.btn-primary:active, .btn-primary:hover {
+    color: #f5a623;
+    background-color: transparent;
+    border: 2px solid #f5a623;
+}
+
+.category-block {
+    min-height: 650px;
+    background-color: #435c70;
+    padding: 40px;
+    box-shadow: 1px 1px 5px 0 #455c71;
+    min-height: 350px;
+    height: 100%;
+}
+
+.tm-block-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.category-table-container {
+    max-height: 310px;
+    margin-bottom: 15px;
+    overflow-y: scroll;
+}
+
+.table th, .table td {
+    padding: 18px;
+}
