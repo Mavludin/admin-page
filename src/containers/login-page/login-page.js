@@ -41,7 +41,7 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div className="login-page mt-5">
-                <form onSubmit={(e)=>e.preventDefault(e)}>
+                <form className='login-form' onSubmit={(e)=>e.preventDefault(e)}>
                     <h3>Welcome to Dashboard, Login</h3>
                     <div> 
                         <span>Username</span>

@@ -1,6 +1,18 @@
 import React from 'react';
 
+import './category-block.css';
+
 class CategoryBlock extends React.Component {
+
+    popUp = React.createRef();
+
+    showPopUp = () => {
+        this.popUp.current.style.display = 'block';
+    }
+
+    onCategoryName = (e) => {
+        console.log(e.target.value)
+    }
 
     render() {
         
@@ -21,6 +33,17 @@ class CategoryBlock extends React.Component {
         
         return (
             <div className="category-block">
+
+                <div ref={this.popUp} className="add-category-popUp">
+
+                    <input type="text" onChange={(e)=>this.onCategoryName(e)} />
+
+                    <button onClick={this.addNewCategory} className="btn btn-primary btn-block text-uppercase mb-3">
+                        Add
+                    </button>
+
+                </div>
+
                 <h2 className="tm-block-title">Product Categories</h2>
 
                 <div className="category-table-container">
@@ -31,7 +54,7 @@ class CategoryBlock extends React.Component {
                     </table>
                 </div>
 
-                <button class="btn btn-primary btn-block text-uppercase mb-3">
+                <button onClick={this.showPopUp} className="btn btn-primary btn-block text-uppercase mb-3">
                     Add new category
                 </button>
 

@@ -1,0 +1,11 @@
+.add-category-popUp {
+    display: none;
+    width: 300px;
+    height: 200px;
+    position: fixed;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: black;
+}

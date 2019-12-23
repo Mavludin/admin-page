@@ -21,18 +21,6 @@ const Header = (props) => {
                         </Link>
                     </div>
 
-                    {   
-                        props.userLoggedInStatus ?
-                            <div>
-                                <Link className="nav-link" to="/">
-                                    <i className="far fa-file-alt"></i>
-                                    <p>Reports <i className="fas fa-angle-down"></i></p> 
-                                </Link>
-                            </div>
-                        : null
-
-                    }
-
                     <div>
                         <Link className="nav-link" to="/products">
                             <i className="fas fa-shopping-cart"></i>
@@ -45,19 +33,6 @@ const Header = (props) => {
                             <p>Accounts</p> 
                         </Link>
                     </div>
-
-                    {   
-                        props.userLoggedInStatus ?
-                            <div>
-                                <Link className="nav-link" to="/">
-                                    <i className="fas fa-cog"></i>
-                                    <p>Settings <i className="fas fa-angle-down"></i></p> 
-                                </Link>
-                            </div>
-                        : null
-
-                    }
-
                 </nav>
 
                 {

@@ -6,6 +6,7 @@ import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Dashboard from './containers/dashboard/dashboard';
 import ProductPage from './containers/product-page/product-page';
+import AddProductPage from './containers/product-page/product-block/add-product/add-product';
 
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
@@ -29,7 +30,12 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json')
     .then(response => {
-      localStorage.setItem('adminData', JSON.stringify(response.data));
+
+      console.log(response.data)
+
+      if (!localStorage[('adminData')]) localStorage.setItem('adminData', JSON.stringify(response.data));
+      else return false;
+
     })
   }
 
@@ -54,6 +60,8 @@ class App extends React.Component {
                   <Route path="/dashboard" render={props => <Dashboard {...props} dataFromBackEnd = {this.state.dataFromBackEnd} />} />
 
                   <Route path="/products" component={ProductPage} />
+
+                  <Route path="/add-product" component={AddProductPage} />
 
                 </Switch>
               </div>
