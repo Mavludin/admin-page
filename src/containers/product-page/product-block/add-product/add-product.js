@@ -109,7 +109,7 @@ class AddProductPage extends React.Component {
                     </div>
 
                 </div>
-                <button onClick={this.onAddNewProduct} type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+                <button onClick={this.onAddNewProduct} type="submit" className="btn btn-primary btn-block text-uppercase">Add Product Now</button>
             </div>
         )
     }

@@ -4,14 +4,60 @@ import './category-block.css';
 
 class CategoryBlock extends React.Component {
 
-    popUp = React.createRef();
-
-    showPopUp = () => {
-        this.popUp.current.style.display = 'block';
+    state = {
+        categoryList : JSON.parse(localStorage[('adminData')]).productsPage.categories
     }
 
-    onCategoryName = (e) => {
-        console.log(e.target.value)
+    popUp = React.createRef();
+    overlay = React.createRef();
+    categoryInput = React.createRef();
+
+    showPopUp = () => {
+        this.popUp.current.style.display = 'flex';
+        this.overlay.current.style.display = 'block';
+    }
+
+    closePopUp = () => {
+        this.popUp.current.style.display = 'none';
+        this.overlay.current.style.display = 'none';
+    }
+
+    addNewCategory = () => {
+
+        if ( this.categoryInput.current.value !== '') {
+            let wholeStorage = JSON.parse(localStorage[('adminData')]);
+            const updatedCategoryList = wholeStorage.productsPage.categories;
+    
+            const newCategory = this.categoryInput.current.value;
+            updatedCategoryList.push(newCategory);
+            wholeStorage.productsPage.categories = updatedCategoryList;
+    
+            localStorage.setItem('adminData', JSON.stringify(wholeStorage));
+            this.setState({categoryList: wholeStorage.productsPage.categories})
+        }
+        
+        this.closePopUp();
+    }
+
+    removeCategory = (pos,e) => {
+        e.preventDefault();
+
+        const tempArr = this.state.categoryList;
+        let wholeStorage = JSON.parse(localStorage[('adminData')]);
+
+        tempArr.splice(pos, 1);
+
+        wholeStorage.productsPage.categories = tempArr;
+        localStorage.setItem('adminData', JSON.stringify(wholeStorage));
+        this.setState({categoryList: tempArr});
+    }
+
+    componentDidMount() {
+        document.addEventListener("keydown", (e)=>{
+            if (e.keyCode === 27) {
+                this.closePopUp();
+              }
+        }, false);
     }
 
     render() {
@@ -23,8 +69,8 @@ class CategoryBlock extends React.Component {
                 <tr key={pos+1}>
                     <td className="tm-product-name">{item}</td>
                     <td className="text-center">
-                        <a href="#" className="tm-product-delete-link">
-                        <i className="far fa-trash-alt tm-product-delete-icon"></i>
+                        <a href="/" className="tm-product-delete-link">
+                            <i onClick={(e)=>this.removeCategory(pos,e)} className="far fa-trash-alt tm-product-delete-icon"></i>
                         </a>
                     </td>
               </tr>
@@ -34,13 +80,18 @@ class CategoryBlock extends React.Component {
         return (
             <div className="category-block">
 
+                <div onClick={this.closePopUp} ref={this.overlay} className="overlay"></div>
+
                 <div ref={this.popUp} className="add-category-popUp">
 
-                    <input type="text" onChange={(e)=>this.onCategoryName(e)} />
+                    <label>Enter category name</label>
+                    <input ref={this.categoryInput} className="form-control" type="text" />
 
                     <button onClick={this.addNewCategory} className="btn btn-primary btn-block text-uppercase mb-3">
                         Add
                     </button>
+
+                    <i onClick={this.closePopUp} class="fas fa-times-circle"></i>
 
                 </div>
 

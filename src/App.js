@@ -11,6 +11,7 @@ import AddProductPage from './containers/product-page/product-block/add-product/
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import axios from 'axios';
+import AccountsPage from './containers/accounts-page/accounts-page';
 
 class App extends React.Component {
 
@@ -33,8 +34,7 @@ class App extends React.Component {
 
       console.log(response.data)
 
-      if (!localStorage[('adminData')]) localStorage.setItem('adminData', JSON.stringify(response.data));
-      else return false;
+      localStorage.setItem('adminData', JSON.stringify(response.data));
 
     })
   }
@@ -62,6 +62,8 @@ class App extends React.Component {
                   <Route path="/products" component={ProductPage} />
 
                   <Route path="/add-product" component={AddProductPage} />
+
+                  <Route path="/accounts" component={AccountsPage} />
 
                 </Switch>
               </div>

@@ -63,22 +63,33 @@ class ProductBlock extends React.Component {
 
         const renderingData = this.state.productData.map((item,pos) => {
             return (
-                <tr key={pos+1}>
-                    <th scope="row">
-                        <label htmlFor={`product-${pos+1}`}>
-                            <input onChange={(e)=>{this.onChecked(pos,e)}} type="checkbox" id={`product-${pos+1}`}/>
-                        </label>
-                    </th>
-                    <td className="tm-product-name">{item.name}</td>
-                    <td>{item.unitSold}</td>
-                    <td>{item.stock}</td>
-                    <td>{item.expireDate}</td>
-                    <td>
-                    <a href='/' onClick={(e)=>this.removeProduct(pos,e)} className="tm-product-delete-link">
-                        <i className="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                    </td>
-              </tr>
+                <tr>
+
+                    <tr colSpan="2">
+                        <th scope="row">
+                            <label htmlFor={`product-${pos+1}`}>
+                                <input onChange={(e)=>{this.onChecked(pos,e)}} type="checkbox" id={`product-${pos+1}`}/>
+                            </label>
+                        </th>
+                    </tr>
+                    
+                    <tr key={pos+1}>
+                        <td className="tm-product-name">{item.name}</td>
+                        <td>{item.unitSold}</td>
+                        <td>{item.stock}</td>
+                        <td>{item.expireDate}</td>
+                        <td>
+                        <a href='/' onClick={(e)=>this.removeProduct(pos,e)} className="tm-product-delete-link">
+                            <i className="far fa-trash-alt tm-product-delete-icon"></i>
+                        </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colSpan="5">{item.description}</td>
+                    </tr>
+
+                </tr>
             )
         });
         
