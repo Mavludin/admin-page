@@ -25,7 +25,7 @@ class Perform extends React.Component {
 
   getChartData = () => {
 
-    const getCharts = JSON.parse(localStorage[('adminData')]).dasbhoardPage.performance;
+    const getCharts = JSON.parse(localStorage[('myBackEndData')]).dasbhoardPage.performance;
 
     const dependentData = Object.values(getCharts);
     const mainLabels = Object.getOwnPropertyNames(getCharts);

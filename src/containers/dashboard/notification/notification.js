@@ -3,7 +3,7 @@ import React from 'react';
 class NotificationList extends React.Component {
 
   render() {
-    const data = JSON.parse(localStorage[('adminData')]).dasbhoardPage.notifications;
+    const data = JSON.parse(localStorage[('myBackEndData')]).dasbhoardPage.notifications;
 
     const renderingData = data.map((item,pos)=>{
 

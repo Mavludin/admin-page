@@ -19,7 +19,7 @@ class StorageInfo extends React.Component {
 
   getChartData = () => {
 
-    const getCharts = JSON.parse(localStorage[('adminData')]).dasbhoardPage.storage;
+    const getCharts = JSON.parse(localStorage[('myBackEndData')]).dasbhoardPage.storage;
 
     const dependentData = Object.values(getCharts);
     const mainLabels = Object.getOwnPropertyNames(getCharts);

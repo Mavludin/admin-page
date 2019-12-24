@@ -1,11 +1,22 @@
 import React from 'react';
 import './login.css';
 
+import axios from 'axios';
+
 class LoginPage extends React.Component {
 
     state = {
         userName: '',
         userPassword: '' 
+    }
+
+    gettingDataFromBackend = () => {
+        axios.get('https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json')
+        .then(response => {
+            localStorage.setItem('myBackEndData', JSON.stringify(response.data));
+        }).then(()=>{
+            this.props.history.push('/dashboard');
+        });
     }
 
     toLocalStorage = () => {
@@ -17,7 +28,13 @@ class LoginPage extends React.Component {
 
         localStorage.setItem('isLogged', true);
         this.props.onUserLoggedIn();
-        this.props.history.push('/dashboard');
+
+
+        if (localStorage['myBackEndData']) {
+            this.props.history.push('/dashboard');
+        } else {
+            this.gettingDataFromBackend();
+        }
     }
 
     getUserName = (e) => {
@@ -36,6 +53,16 @@ class LoginPage extends React.Component {
             return;
         }
 
+    }
+
+    componentDidMount() {
+
+        if (!localStorage[('myBackEndData')]) {
+            axios.get('https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json')
+            .then(response => {
+                localStorage.setItem('myBackEndData', JSON.stringify(response.data));
+            })
+        }
     }
 
     render() {

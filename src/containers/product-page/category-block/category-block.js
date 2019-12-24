@@ -5,7 +5,7 @@ import './category-block.css';
 class CategoryBlock extends React.Component {
 
     state = {
-        categoryList : JSON.parse(localStorage[('adminData')]).productsPage.categories
+        categoryList : JSON.parse(localStorage[('myBackEndData')]).productsPage.categories
     }
 
     popUp = React.createRef();
@@ -25,14 +25,14 @@ class CategoryBlock extends React.Component {
     addNewCategory = () => {
 
         if ( this.categoryInput.current.value !== '') {
-            let wholeStorage = JSON.parse(localStorage[('adminData')]);
+            let wholeStorage = JSON.parse(localStorage[('myBackEndData')]);
             const updatedCategoryList = wholeStorage.productsPage.categories;
     
             const newCategory = this.categoryInput.current.value;
             updatedCategoryList.push(newCategory);
             wholeStorage.productsPage.categories = updatedCategoryList;
     
-            localStorage.setItem('adminData', JSON.stringify(wholeStorage));
+            localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
             this.setState({categoryList: wholeStorage.productsPage.categories})
         }
         
@@ -44,12 +44,12 @@ class CategoryBlock extends React.Component {
         e.preventDefault();
 
         const tempArr = this.state.categoryList;
-        let wholeStorage = JSON.parse(localStorage[('adminData')]);
+        let wholeStorage = JSON.parse(localStorage[('myBackEndData')]);
 
         tempArr.splice(pos, 1);
 
         wholeStorage.productsPage.categories = tempArr;
-        localStorage.setItem('adminData', JSON.stringify(wholeStorage));
+        localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
         this.setState({categoryList: tempArr});
 
     }
@@ -64,7 +64,7 @@ class CategoryBlock extends React.Component {
 
     render() {
         
-        const data = JSON.parse(localStorage[('adminData')]).productsPage.categories;
+        const data = JSON.parse(localStorage[('myBackEndData')]).productsPage.categories;
         
         const renderingData = data.map((item,pos) => {
             return (

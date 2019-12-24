@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class ProductBlock extends React.Component {
 
     state = {
-        productData: JSON.parse(localStorage[('adminData')]).productsPage.products,
+        productData: JSON.parse(localStorage[('myBackEndData')]).productsPage.products,
         checkedItems: []
     }
 
@@ -13,12 +13,12 @@ class ProductBlock extends React.Component {
         e.preventDefault();
 
         const tempArr = this.state.productData;
-        let wholeStorage = JSON.parse(localStorage[('adminData')]);
+        let wholeStorage = JSON.parse(localStorage[('myBackEndData')]);
 
         tempArr.splice(pos, 1);
 
         wholeStorage.productsPage.products = tempArr;
-        localStorage.setItem('adminData', JSON.stringify(wholeStorage));
+        localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
         this.setState({productData: tempArr});
     }
 
@@ -45,7 +45,7 @@ class ProductBlock extends React.Component {
     removeMultipleElements = () => {
         const tempArr = this.state.productData;
 
-        let wholeStorage = JSON.parse(localStorage[('adminData')]);
+        let wholeStorage = JSON.parse(localStorage[('myBackEndData')]);
 
         this.state.checkedItems.map(item=>{
             tempArr.splice(item,1)
@@ -54,7 +54,7 @@ class ProductBlock extends React.Component {
         console.log(tempArr);
 
         wholeStorage.productsPage.products = tempArr;
-        localStorage.setItem('adminData', JSON.stringify(wholeStorage));
+        localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
         this.setState({productData: tempArr});
     }
 

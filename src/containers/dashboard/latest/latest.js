@@ -27,7 +27,7 @@ class LatestHits extends React.Component {
   getChartData = () => {
 
     let tempData = this.state.data;
-    const getCharts = JSON.parse(localStorage[('adminData')]).dasbhoardPage.latestHits;
+    const getCharts = JSON.parse(localStorage[('myBackEndData')]).dasbhoardPage.latestHits;
 
     tempData.datasets[0].data = getCharts.latest;
     tempData.datasets[1].data = getCharts.popular;

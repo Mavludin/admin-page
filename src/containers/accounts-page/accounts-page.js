@@ -39,7 +39,7 @@ class AccountsPage extends React.Component {
 
     onUpdateProfile = () => {
 
-        let wholeStorage = JSON.parse(localStorage[('adminData')]);
+        let wholeStorage = JSON.parse(localStorage[('myBackEndData')]);
         let updatedAccount = wholeStorage.accountsPage[this.state.currentRole];
 
         const obj = {
@@ -53,12 +53,12 @@ class AccountsPage extends React.Component {
         updatedAccount = obj;
         wholeStorage.accountsPage[this.state.currentRole] = updatedAccount;
 
-        localStorage.setItem('adminData', JSON.stringify(wholeStorage));
+        localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
 
     }
 
     onRenderDataBySelect = () => {
-        const data = JSON.parse(localStorage[('adminData')]).accountsPage;
+        const data = JSON.parse(localStorage[('myBackEndData')]).accountsPage;
         const selectedOption = this.selectingRole.current.selectedOptions[0].label;
         const selectedIndex = this.selectingRole.current.selectedIndex;
 
@@ -114,7 +114,7 @@ class AccountsPage extends React.Component {
             defaultRole = JSON.parse(localStorage[('selectedRole')]);
             roleName = defaultRole.role;
             IndexOfSelectedRole = defaultRole.index;
-            myData = JSON.parse(localStorage[('adminData')]).accountsPage[roleName];
+            myData = JSON.parse(localStorage[('myBackEndData')]).accountsPage[roleName];
             this.selectingRole.current.selectedIndex = IndexOfSelectedRole;
 
 

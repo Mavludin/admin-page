@@ -48,7 +48,7 @@ class AddProductPage extends React.Component {
 
     onAddNewProduct = () => {
 
-        let wholeStorage = JSON.parse(localStorage[('adminData')]);
+        let wholeStorage = JSON.parse(localStorage[('myBackEndData')]);
         const updatedProductList = wholeStorage.productsPage.products;
 
         const obj = {
@@ -63,7 +63,7 @@ class AddProductPage extends React.Component {
         updatedProductList.push(obj);
         wholeStorage.productsPage.products = updatedProductList;
 
-        localStorage.setItem('adminData', JSON.stringify(wholeStorage));
+        localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
 
         this.props.history.push('/products');
 

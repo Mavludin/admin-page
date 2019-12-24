@@ -10,13 +10,12 @@ import AddProductPage from './containers/product-page/product-block/add-product/
 
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-import axios from 'axios';
 import AccountsPage from './containers/accounts-page/accounts-page';
 
 class App extends React.Component {
 
   state = {
-    loggedInStatus: localStorage[('isLogged')] === 'true',
+    loggedInStatus: localStorage[('isLogged')] === 'true'
   }
 
   onUserLoggedIn = () => {
@@ -26,15 +25,6 @@ class App extends React.Component {
   onUserLoggedOut = () => {
     localStorage.setItem('isLogged', false);
     this.setState({loggedInStatus: false});
-  }
-
-  componentDidMount() {
-    axios.get('https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json')
-    .then(response => {
-
-      if (!localStorage['adminData']) localStorage.setItem('adminData', JSON.stringify(response.data));
-
-    })
   }
 
   render() {
@@ -50,12 +40,12 @@ class App extends React.Component {
                     this.state.loggedInStatus ?
                     <Redirect to="/dashboard"/>
                     :
-                    <Redirect from="*" to="/login" />
+                    <Redirect to="/login" />
                   )}/>
 
-                  <Route path="/login" render={ props => <LoginPage {...props} onUserLoggedIn = {this.onUserLoggedIn} />} />
-
                   <Route path="/dashboard" render={props => <Dashboard {...props} dataFromBackEnd = {this.state.dataFromBackEnd} />} />
+
+                  <Route path="/login" render={ props => <LoginPage {...props} onUserLoggedIn = {this.onUserLoggedIn} />} />
 
                   <Route path="/products" component={ProductPage} />
 

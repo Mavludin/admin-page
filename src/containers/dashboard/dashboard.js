@@ -1,6 +1,8 @@
 import React from 'react';
 import './dashboard.css';
 
+import axios from 'axios';
+
 import LatestHits from './latest/latest';
 import Perform from './performance/performance';
 import StorageInfo from './storage/storage';
