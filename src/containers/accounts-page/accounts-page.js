@@ -1,5 +1,6 @@
 import React from 'react';
 import './accounts-page.css';
+import defaultAvatar from './img/default-avatar.png';
 
 class AccountsPage extends React.Component {
 
@@ -9,33 +10,30 @@ class AccountsPage extends React.Component {
     rePassword = React.createRef();
     phone = React.createRef();
     selectingRole = React.createRef();
+    profilePic = React.createRef();
+    uploadPic = React.createRef();
 
     state = {
-        currentRole: 'Admin',
-        currentValues: {},
         name: '',
         email: '',
         password: '',
         rePassword: '',
         phone: '',
-        avatar: ''
+        profilePic: ''
     }
 
     onHandleElements = () => {
-
         this.setState({
-            // name: this.name.current.value,
-            // email: this.email.current.value,
-            // password: this.password.current.value,
-            // phone: this.phone.current.value,
-            // currentRole: this.selectingRole.current.selectedOptions[0].label,
-        })
-
+            name: this.name.current.value,
+            email: this.email.current.value,
+            password: this.password.current.value,
+            phone: this.phone.current.value,
+        });
     }
 
     onUploadFile = (e) => {
         this.setState({
-            avatar: e.target.value
+            uploadPic: e.target.value
         });
     }
 
@@ -45,10 +43,10 @@ class AccountsPage extends React.Component {
         let updatedAccount = wholeStorage.accountsPage[this.state.currentRole];
 
         const obj = {
-            email: this.state.email,
-            name: this.state.name,
-            password: this.state.password,
-            phone: this.state.phone,
+            email: this.name.current.value,
+            name: this.email.current.value,
+            password: this.password.current.value,
+            phone: this.phone.current.value,
             profilePic: this.state.avatar
         }
 
@@ -59,35 +57,75 @@ class AccountsPage extends React.Component {
 
     }
 
-    componentDidMount() {
+    onRenderDataBySelect = () => {
         const data = JSON.parse(localStorage[('adminData')]).accountsPage;
+        const selectedOption = this.selectingRole.current.selectedOptions[0].label;
+        const selectedIndex = this.selectingRole.current.selectedIndex;
 
-        const renderingData = data[this.state.currentRole];
+        if (data.hasOwnProperty(selectedOption)) {
+            const selectedData = data[selectedOption];
 
-        this.setState({
-            name: renderingData.name,
-            email: renderingData.email,
-            password: renderingData.password,
-            phone: renderingData.phone,
-            avatar: renderingData.profilePic
-        })
+            this.setState({
+                name: selectedData.name,
+                email: selectedData.email,
+                password: selectedData.password,
+                phone: selectedData.phone,
+                profilePic: selectedData.profilePic
+            });
 
+            localStorage.setItem('selectedRole', JSON.stringify({
+                'role': selectedOption,
+                'index': selectedIndex
+            }));
+
+
+        } else return false;
     }
 
-    onSelectOption = () => {
+    componentDidMount() {
 
-        const data = JSON.parse(localStorage[('adminData')]).accountsPage;
+        let defaultRole;
+        let roleName;
+        let IndexOfSelectedRole;
+        let myData;
 
-        const renderingData = data[this.selectingRole.current.selectedOptions[0].label];
+        if (!localStorage[('selectedRole')]) {
 
-        this.setState({
-            name: renderingData.name,
-            email: renderingData.email,
-            password: renderingData.password,
-            phone: renderingData.phone,
-            avatar: renderingData.profilePic
-        })
+            roleName = '';
+            IndexOfSelectedRole = 0;
+            myData = {};
 
+            defaultRole = {
+                'role': '',
+                'index': 0
+            }
+
+            this.setState({
+                profilePic: defaultAvatar,
+                name: '',
+                email: '',
+                password: '',
+                phone: '',
+            });
+        }
+
+        else {
+
+            defaultRole = JSON.parse(localStorage[('selectedRole')]);
+            roleName = defaultRole.role;
+            IndexOfSelectedRole = defaultRole.index;
+            myData = JSON.parse(localStorage[('adminData')]).accountsPage[roleName];
+            this.selectingRole.current.selectedIndex = IndexOfSelectedRole;
+
+
+            this.setState({
+                profilePic: myData.profilePic,
+                name: myData.name,
+                email: myData.email,
+                password: myData.password,
+                phone: myData.phone,
+            });
+        }
     }
 
     render() {
@@ -97,7 +135,7 @@ class AccountsPage extends React.Component {
                 <div className="accounts-content">
                     <h2 class="tm-block-title">List of Accounts</h2>
                     <p class="text-white">Accounts</p>
-                    <select ref={this.selectingRole} onChange={this.onSelectOption} class="custom-select">
+                    <select ref={this.selectingRole} onChange={this.onRenderDataBySelect} class="custom-select">
                         <option value="0">Select account</option>
                         <option value="1">Admin</option>
                         <option value="2">Customer</option>
@@ -111,8 +149,7 @@ class AccountsPage extends React.Component {
                         <div class="tm-bg-primary-dark tm-block tm-block-avatar">
                             <h2 class="tm-block-title">Change Avatar</h2>
                             <div class="tm-avatar-container">
-                                {/* <img src={this.state.avatar} alt="Avatar" class="tm-avatar img-fluid mb-4" /> */}
-                                <img src="file://c:/123.jpg" alt="Avatar" class="tm-avatar img-fluid mb-4" />
+                                <img src={this.state.profilePic} ref={this.profilePic} alt="Avatar" class="tm-avatar img-fluid mb-4" />
                                 
                                 <a href="#" class="tm-avatar-delete-link">
                                     <i class="far fa-trash-alt tm-product-delete-icon"></i>
@@ -121,7 +158,7 @@ class AccountsPage extends React.Component {
                             <button onClick={()=>this.avatar.click()} class="btn btn-primary btn-block text-uppercase">
                                 Upload New Photo
                             </button>
-                            <input onChange={(e)=>{this.onUploadFile(e)}} accept=".jpg, .png, .bmp, .svg, .webp" ref={input => this.avatar = input} className="fileInput" type="file" style={{display: 'none'}} />
+                            <input onChange={(e)=>{this.onUploadFile(e)}} accept=".jpg, .png, .bmp, .svg, .webp" ref={input => this.uploadPic = input} className="fileInput" type="file" style={{display: 'none'}} />
                         </div>
                     </div>
                     <div class="tm-block-col tm-col-account-settings">
