@@ -40,6 +40,7 @@ class CategoryBlock extends React.Component {
     }
 
     removeCategory = (pos,e) => {
+        
         e.preventDefault();
 
         const tempArr = this.state.categoryList;
@@ -50,6 +51,7 @@ class CategoryBlock extends React.Component {
         wholeStorage.productsPage.categories = tempArr;
         localStorage.setItem('adminData', JSON.stringify(wholeStorage));
         this.setState({categoryList: tempArr});
+
     }
 
     componentDidMount() {
@@ -69,8 +71,8 @@ class CategoryBlock extends React.Component {
                 <tr key={pos+1}>
                     <td className="tm-product-name">{item}</td>
                     <td className="text-center">
-                        <a href="/" className="tm-product-delete-link">
-                            <i onClick={(e)=>this.removeCategory(pos,e)} className="far fa-trash-alt tm-product-delete-icon"></i>
+                        <a onClick={(e)=>this.removeCategory(pos,e)} href="/" className="tm-product-delete-link">
+                            <i className="far fa-trash-alt tm-product-delete-icon"></i>
                         </a>
                     </td>
               </tr>

@@ -32,9 +32,7 @@ class App extends React.Component {
     axios.get('https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json')
     .then(response => {
 
-      console.log(response.data)
-
-      localStorage.setItem('adminData', JSON.stringify(response.data));
+      if (!localStorage['adminData']) localStorage.setItem('adminData', JSON.stringify(response.data));
 
     })
   }

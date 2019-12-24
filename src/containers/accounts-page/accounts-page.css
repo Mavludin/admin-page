@@ -46,6 +46,7 @@
     padding: 40px;
     box-shadow: 1px 1px 5px 0 #455c71;
     min-height: 350px;
+    height: auto;
 }
 
 .tm-avatar-container {
@@ -54,6 +55,47 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.tm-avatar {
+    width: 345px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.tm-avatar-delete-link {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+    z-index: 1000;
+    padding: 14px;
+    border-radius: 50%;
+    background-color: rgba(57, 78, 100, 0.7);
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    display: none;
+    transition: all 0.2s ease;
+}
+
+.tm-product-delete-icon {
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.tm-avatar-container:hover .tm-avatar-delete-link {
+    display: block;
 }
 
 .tm-col-account-settings {

@@ -64,31 +64,32 @@ class ProductBlock extends React.Component {
         const renderingData = this.state.productData.map((item,pos) => {
             return (
                 <tr>
-
-                    <tr colSpan="2">
-                        <th scope="row">
-                            <label htmlFor={`product-${pos+1}`}>
-                                <input onChange={(e)=>{this.onChecked(pos,e)}} type="checkbox" id={`product-${pos+1}`}/>
-                            </label>
-                        </th>
-                    </tr>
-                    
-                    <tr key={pos+1}>
-                        <td className="tm-product-name">{item.name}</td>
-                        <td>{item.unitSold}</td>
-                        <td>{item.stock}</td>
-                        <td>{item.expireDate}</td>
-                        <td>
-                        <a href='/' onClick={(e)=>this.removeProduct(pos,e)} className="tm-product-delete-link">
-                            <i className="far fa-trash-alt tm-product-delete-icon"></i>
-                        </a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colSpan="5">{item.description}</td>
-                    </tr>
-
+                    <td>
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <label htmlFor={`product-${pos+1}`}>
+                                        <input onChange={(e)=>{this.onChecked(pos,e)}} type="checkbox" id={`product-${pos+1}`}/>
+                                    </label>
+                                </td>
+                                <td className="tm-product-name">{item.name}</td>
+                                <td>{item.category}</td>
+                                <td>{item.unitSold}</td>
+                                <td>{item.stock}</td>
+                                <td>{item.expireDate}</td>
+                                <td rowspan="2">
+                                    <a href='/' onClick={(e)=>this.removeProduct(pos,e)} className="tm-product-delete-link">
+                                        <i className="far fa-trash-alt tm-product-delete-icon"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    {item.description}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             )
         });
@@ -97,21 +98,23 @@ class ProductBlock extends React.Component {
 
             <div className="product-block">
                 <div className="product-table-container">
-                    
+
                     <table className="table table-hover tm-table-small tm-product-table">
-                        <thead>
                         <tr>
-                            <th scope="col">&nbsp;</th>
+                        <th scope="col">&nbsp;</th>
                             <th scope="col">PRODUCT NAME</th>
+                            <th scope="col">CATEGORY</th>
                             <th scope="col">UNIT SOLD</th>
                             <th scope="col">IN STOCK</th>
                             <th scope="col">EXPIRE DATE</th>
                             <th scope="col">&nbsp;</th>
                         </tr>
-                        </thead>
-                        <tbody>
-                            {renderingData}
-                        </tbody>
+                    </table>
+                    
+                    <table className="table table-hover tm-table-small tm-product-table data-table">
+                                
+                        {renderingData}
+
                     </table>
 
                 </div>

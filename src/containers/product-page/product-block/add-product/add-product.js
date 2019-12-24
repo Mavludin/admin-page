@@ -5,23 +5,29 @@ class AddProductPage extends React.Component {
 
     imageInput = React.createRef();
     productName = React.createRef();
+    productCategory = React.createRef();
     description = React.createRef();
     expireDate = React.createRef();
     stockUnits = React.createRef();
+    soldUnits = React.createRef();
 
     state = {
         productName: '',
+        productCategory: '',
         description: '',
         expireDate: '',
-        stockUnits: 0
+        stockUnits: 0,
+        soldUnits: 0
     }
 
     onHandleElements = () => {
         this.setState({
             productName: this.productName.current.value,
+            productCategory: this.productCategory.current.selectedOptions[0].label,
             description: this.description.current.value,
             expireDate: this.expireDate.current.value,
-            stockUnits: this.stockUnits.current.value
+            stockUnits: this.stockUnits.current.value,
+            soldUnits: this.soldUnits.current.value
         })
     }
 
@@ -33,9 +39,11 @@ class AddProductPage extends React.Component {
         const fileSize = Math.round((e.target.files[0].size/1024));
 
         if (fileSize > 1024)  {
-            alert('The file size can\'t be more than 1 MB');
+            alert('File size can\'t be more than 1 MB');
             return false;
         }
+
+        console.log(e.target.value);
     }
 
     onAddNewProduct = () => {
@@ -44,10 +52,12 @@ class AddProductPage extends React.Component {
         const updatedProductList = wholeStorage.productsPage.products;
 
         const obj = {
-            unitSold: 5,
+            category: this.state.productCategory,
+            description: this.state.description,
+            expireDate: this.state.expireDate,
             name: this.state.productName,
             stock: this.state.stockUnits,
-            expireDate: this.state.expireDate
+            unitSold: this.state.soldUnits
         }
 
         updatedProductList.push(obj);
@@ -66,7 +76,7 @@ class AddProductPage extends React.Component {
                 
                 <div className='add-product-blocks'>
 
-                    <form action="" className="tm-edit-product-form">
+                    <form action="" onSubmit={(e)=>{e.preventDefault();}} className="tm-edit-product-form">
                         <div className="form-group mb-3">
                             <label htmlFor="name">Product Name</label>
                             <input ref={this.productName} onChange={this.onHandleElements} name="name" type="text" className="form-control validate name" required />
@@ -77,22 +87,29 @@ class AddProductPage extends React.Component {
                         </div>
                         <div className="form-group mb-3">
                             <label htmlFor="category">Category</label>
-                            <select className="custom-select tm-select-accounts category" >
+                            <select ref={this.productCategory} onChange={this.onHandleElements} className="custom-select tm-select-accounts category" required>
                                 <option defaultValue="">Select category</option>
-                                <option value="1">New Arrival</option>
-                                <option value="2">Most Popular</option>
-                                <option value="3">Trending</option>
+                                <option defaultValue="1">New Arrival</option>
+                                <option defaultValue="2">Most Popular</option>
+                                <option defaultValue="3">Trending</option>
+                                <option defaultValue="4">Christmas Special</option>
+                                <option defaultValue="5">Latest Fashion</option>
+                                <option defaultValue="6">New Year Special</option>
                             </select>
                         </div>
                         <div className="expire-stock">
                             <div className="form-group mb-3 col-xs-12 col-sm-6 expire">
                                 <label htmlFor="expire_date">Expire Date
                                 </label>
-                                <input ref={this.expireDate} onChange={this.onHandleElements} name="expire_date" type="date" className="expire_date form-control validate hasDatepicker" />
+                                <input required ref={this.expireDate} onChange={this.onHandleElements} name="expire_date" type="date" className="expire_date form-control validate hasDatepicker" />
                             </div>
                             <div className="form-group mb-3 col-xs-12 col-sm-6 stock">
                                 <label htmlFor="stock">Units In Stock</label>
                                 <input ref={this.stockUnits} onChange={this.onHandleElements} name="stock" type="text" className="form-control validate stock" required />
+                            </div>
+                            <div className="form-group mb-3 col-xs-12 col-sm-6 stock">
+                                <label htmlFor="sold">Units Sold</label>
+                                <input ref={this.soldUnits} onChange={this.onHandleElements} name="sold" type="text" className="form-control validate stock" required />
                             </div>
                         </div>
                     
@@ -108,8 +125,9 @@ class AddProductPage extends React.Component {
                         </div>
                     </div>
 
+                    <button onClick={this.onAddNewProduct} type="submit" className="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+
                 </div>
-                <button onClick={this.onAddNewProduct} type="submit" className="btn btn-primary btn-block text-uppercase">Add Product Now</button>
             </div>
         )
     }

@@ -23,7 +23,7 @@ header div {
     cursor: pointer;
 }
 
-header div + div {
+.nav-link + .nav-link {
     margin-left: 20px;
 }
 
@@ -37,7 +37,7 @@ header a {
     transition: color .2s;
 }
 
-.header-content div:hover .nav-link {
+.nav-link:hover {
     color: #f5a623;
 }
 
