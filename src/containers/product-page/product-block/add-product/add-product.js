@@ -43,7 +43,6 @@ class AddProductPage extends React.Component {
             return false;
         }
 
-        console.log(e.target.value);
     }
 
     onAddNewProduct = () => {
@@ -60,12 +59,30 @@ class AddProductPage extends React.Component {
             unitSold: this.state.soldUnits
         }
 
-        updatedProductList.push(obj);
-        wholeStorage.productsPage.products = updatedProductList;
+        let isFull = false;
 
-        localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
+        for (let key in obj) {
+            if (  
+                obj[key] !== null && 
+                obj[key] !== '' && 
+                obj[key] !== undefined && 
+                obj[key] !== 0
+            )  
+                {isFull = true;}
 
-        this.props.history.push('/products');
+            else {isFull = false; break;}
+        }
+
+        if (!isFull) {
+            alert('Please fill in all the fields!');
+            return false;
+        } else {
+            updatedProductList.push(obj);
+            wholeStorage.productsPage.products = updatedProductList;
+    
+            localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
+            this.props.history.push('/products');
+        }
 
     }
 
@@ -104,15 +121,15 @@ class AddProductPage extends React.Component {
                                 <input required ref={this.expireDate} onChange={this.onHandleElements} name="expire_date" type="date" className="expire_date form-control validate hasDatepicker" />
                             </div>
                             <div className="form-group mb-3 col-xs-12 col-sm-6 stock">
-                                <label htmlFor="stock">Units In Stock</label>
+                                <label htmlFor="stock">In Stock</label>
                                 <input ref={this.stockUnits} onChange={this.onHandleElements} name="stock" type="text" className="form-control validate stock" required />
                             </div>
-                            <div className="form-group mb-3 col-xs-12 col-sm-6 stock">
-                                <label htmlFor="sold">Units Sold</label>
-                                <input ref={this.soldUnits} onChange={this.onHandleElements} name="sold" type="text" className="form-control validate stock" required />
+                            <div className="form-group mb-3 col-xs-12 col-sm-6 sold">
+                                <label htmlFor="sold">Sold</label>
+                                <input ref={this.soldUnits} onChange={this.onHandleElements} name="sold" type="text" className="form-control validate sold" required />
                             </div>
                         </div>
-                    
+
                     </form>
 
                     <div className="upload-image">

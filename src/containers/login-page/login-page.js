@@ -3,6 +3,8 @@ import './login.css';
 
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+
 class LoginPage extends React.Component {
 
     state = {
@@ -26,9 +28,7 @@ class LoginPage extends React.Component {
             'userPassword': this.state.userPassword,
         }));
 
-        localStorage.setItem('isLogged', true);
         this.props.onUserLoggedIn();
-
 
         if (localStorage['myBackEndData']) {
             this.props.history.push('/dashboard');
@@ -87,4 +87,11 @@ class LoginPage extends React.Component {
     }
 }
 
-export default LoginPage;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onUserLoggedIn: () => {dispatch({type: 'USER_LOGIN'})}
+    }
+}
+
+export default connect(null, mapDispatchToProps)(LoginPage);

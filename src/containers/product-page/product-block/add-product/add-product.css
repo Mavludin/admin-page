@@ -24,6 +24,11 @@
     margin-bottom: 10px;
 }
 
+.add-product-blocks .form-group {
+    width: 100%;
+    padding: 0;
+}
+
 label {
     display: inline-block;
 }
@@ -126,6 +131,6 @@ textarea.form-control {
     justify-content: space-between;
 }
 
-.expire + .stock{
-    padding-left: 15px;
+.expire-stock .form-group + .form-group {
+    padding-left: 10px;
 }

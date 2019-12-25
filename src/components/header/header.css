@@ -17,7 +17,7 @@ h1 {
     font-size: 1.5em;
 }
 
-header div {
+header .top-menu div {
     text-align: center;
     display: inline-block;
     cursor: pointer;
@@ -51,4 +51,47 @@ header p i {
 
 .header-content div span {
     font-weight: 600;
+}
+
+.navbar-toggler {
+    display: none;
+    border: 1px solid #708da8;
+    box-shadow: rgba(255, 255, 255, 0.1) 0 1px 1px 2px;
+    padding: 10px 15px;
+    -webkit-appearance: button;
+    margin-left: auto;
+    margin-right: 0;
+    color: white;
+    background-color: #567086;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.navbar-toggler:hover {
+    border: 1px solid #f5a623;
+    color:#f5a623;
+}
+
+.hidden-menu {
+    display: none;
+    padding: 0;
+    box-shadow:rgba(255, 255, 255, 0.1) 0 1px 1px 1px;
+    position: absolute;
+    top: 72px;
+    right: 15px;
+    width: 200px;
+    z-index: 1000;
+    background-color: #567086;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    .top-menu, .logout {
+        display: none;
+    }
+
+    .navbar-toggler, .hidden-menu .logout {
+        display: block;
+    }
 }

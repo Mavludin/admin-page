@@ -36,8 +36,6 @@ class ProductBlock extends React.Component {
             if (index !== -1) tempData.splice(index, 1);
         }
 
-        console.log(tempData)
-
         this.setState({checkedItems: tempData});
 
     }
@@ -50,8 +48,6 @@ class ProductBlock extends React.Component {
         this.state.checkedItems.map(item=>{
             tempArr.splice(item,1)
         })
-
-        console.log(tempArr);
 
         wholeStorage.productsPage.products = tempArr;
         localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));

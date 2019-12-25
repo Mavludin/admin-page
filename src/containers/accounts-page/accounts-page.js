@@ -12,6 +12,8 @@ class AccountsPage extends React.Component {
     selectingRole = React.createRef();
     profilePic = React.createRef();
     uploadPic = React.createRef();
+    popUp = React.createRef();
+    overlay = React.createRef();
 
     state = {
         name: '',
@@ -19,41 +21,78 @@ class AccountsPage extends React.Component {
         password: '',
         rePassword: '',
         phone: '',
-        profilePic: ''
+        profilePic: '',
+        currentRole: ''
+    }
+
+    defaultState = () => {
+        this.setState({
+            name: '',
+            email: '',
+            password: '',
+            phone: '',
+            profilePic: defaultAvatar
+        });
     }
 
     onHandleElements = () => {
-        this.setState({
-            name: this.name.current.value,
-            email: this.email.current.value,
-            password: this.password.current.value,
-            phone: this.phone.current.value,
-        });
+
+        if (this.selectingRole.current.selectedIndex !== 0) {
+            this.setState({
+                name: this.name.current.value,
+                email: this.email.current.value,
+                password: this.password.current.value,
+                phone: this.phone.current.value
+            });
+
+        } else {
+            alert('Choose the account type');
+            return false;
+        }
+
     }
 
     onUploadFile = (e) => {
-        this.setState({
-            uploadPic: e.target.value
-        });
+
+        if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              this.setState({
+                profilePic: e.target.result
+              });
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        }
     }
 
     onUpdateProfile = () => {
 
         let wholeStorage = JSON.parse(localStorage[('myBackEndData')]);
-        let updatedAccount = wholeStorage.accountsPage[this.state.currentRole];
+        const selectedOption = this.selectingRole.current.selectedOptions[0].label;
+        let updatedAccount = wholeStorage.accountsPage;
+        
+        if (updatedAccount.hasOwnProperty(selectedOption)) {
 
-        const obj = {
-            email: this.name.current.value,
-            name: this.email.current.value,
-            password: this.password.current.value,
-            phone: this.phone.current.value,
-            profilePic: this.state.avatar
+            const obj = {
+                email: this.state.email,
+                name: this.state.name,
+                password: this.state.password,
+                phone: this.state.phone,
+                profilePic: this.state.profilePic
+            }
+
+            updatedAccount[selectedOption] = obj;
+            wholeStorage.accountsPage[selectedOption] = updatedAccount[selectedOption];
+
+            localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
+
+            this.popUp.current.style.display = 'flex';
+            this.overlay.current.style.display = 'block';
+
+        } else {
+            alert('Choose the account type');
+            return false;
         }
-
-        updatedAccount = obj;
-        wholeStorage.accountsPage[this.state.currentRole] = updatedAccount;
-
-        localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
 
     }
 
@@ -79,7 +118,23 @@ class AccountsPage extends React.Component {
             }));
 
 
-        } else return false;
+        } else {
+
+            this.defaultState();
+            return false;
+        }
+    }
+
+    closePopUp = () => {
+        this.popUp.current.style.display = 'none';
+        this.overlay.current.style.display = 'none';
+    }
+
+    deletePic = (e) => {
+        e.preventDefault();
+        this.setState({
+            profilePic: defaultAvatar
+        })
     }
 
     componentDidMount() {
@@ -100,13 +155,7 @@ class AccountsPage extends React.Component {
                 'index': 0
             }
 
-            this.setState({
-                profilePic: defaultAvatar,
-                name: '',
-                email: '',
-                password: '',
-                phone: '',
-            });
+            this.defaultState();
         }
 
         else {
@@ -126,6 +175,12 @@ class AccountsPage extends React.Component {
                 phone: myData.phone,
             });
         }
+
+        document.addEventListener("keydown", (e)=>{
+            if (e.keyCode === 27) {
+                this.closePopUp();
+              }
+        }, false);
     }
 
     render() {
@@ -151,14 +206,22 @@ class AccountsPage extends React.Component {
                             <div class="tm-avatar-container">
                                 <img src={this.state.profilePic} ref={this.profilePic} alt="Avatar" class="tm-avatar img-fluid mb-4" />
                                 
-                                <a href="#" class="tm-avatar-delete-link">
-                                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                </a>
+                                {
+                                    this.state.profilePic && this.state.profilePic !== defaultAvatar
+                                    ?
+                                    <a onClick={(e)=>this.deletePic(e)} href="/" class="tm-avatar-delete-link">
+                                        <i className="far fa-trash-alt tm-product-delete-icon"></i>
+                                    </a>
+
+                                    : null
+
+                                }
+
                             </div>
-                            <button onClick={()=>this.avatar.click()} class="btn btn-primary btn-block text-uppercase">
+                            <button onClick={()=>this.uploadPic.click()} class="btn btn-primary btn-block text-uppercase">
                                 Upload New Photo
                             </button>
-                            <input onChange={(e)=>{this.onUploadFile(e)}} accept=".jpg, .png, .bmp, .svg, .webp" ref={input => this.uploadPic = input} className="fileInput" type="file" style={{display: 'none'}} />
+                            <input onChange={(e)=>this.onUploadFile(e)} accept=".jpg, .png, .bmp, .svg, .webp" ref={input => this.uploadPic = input} className="fileInput" type="file" style={{display: 'none'}} />
                         </div>
                     </div>
                     <div class="tm-block-col tm-col-account-settings">
@@ -191,7 +254,7 @@ class AccountsPage extends React.Component {
                                     Update Your Profile
                                 </button>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 form-group">
                                 <button type="submit" class="btn btn-primary btn-block text-uppercase">
                                     Delete Your Account
                                 </button>
@@ -199,6 +262,16 @@ class AccountsPage extends React.Component {
                             </form>
                         </div>
                     </div>
+                </div>
+
+                <div onClick={this.closePopUp} ref={this.overlay} className="overlay"></div>
+
+                <div ref={this.popUp} className="add-category-popUp">
+
+                    <h2>Information Updated Successfully!</h2>
+
+                    <i onClick={this.closePopUp} class="fas fa-times-circle"></i>
+
                 </div>
 
             </div>

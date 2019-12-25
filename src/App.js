@@ -7,51 +7,39 @@ import Footer from './components/footer/footer';
 import Dashboard from './containers/dashboard/dashboard';
 import ProductPage from './containers/product-page/product-page';
 import AddProductPage from './containers/product-page/product-block/add-product/add-product';
+import AccountsPage from './containers/accounts-page/accounts-page';
 
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
-import AccountsPage from './containers/accounts-page/accounts-page';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
-
-  state = {
-    loggedInStatus: localStorage[('isLogged')] === 'true'
-  }
-
-  onUserLoggedIn = () => {
-    this.setState({loggedInStatus: true});
-  }
-
-  onUserLoggedOut = () => {
-    localStorage.setItem('isLogged', false);
-    this.setState({loggedInStatus: false});
-  }
 
   render() {
     return (
       <BrowserRouter>
           <div className="App">
-            <Header onUserLoggedOut={this.onUserLoggedOut} userLoggedInStatus={this.state.loggedInStatus} />
+            <Header />
   
               <div>
                 <Switch>
 
                   <Route exact path="/" render={() => (
-                    this.state.loggedInStatus ?
+                    this.props.userLoggedInStatus ?
                     <Redirect to="/dashboard"/>
                     :
                     <Redirect to="/login" />
                   )}/>
 
-                  <Route path="/dashboard" render={props => <Dashboard {...props} dataFromBackEnd = {this.state.dataFromBackEnd} />} />
+                  <Route exact path="/dashboard" render={props => <Dashboard {...props} />} />
 
-                  <Route path="/login" render={ props => <LoginPage {...props} onUserLoggedIn = {this.onUserLoggedIn} />} />
+                  <Route exact path="/login" render={ props => <LoginPage {...props} />} />
 
-                  <Route path="/products" component={ProductPage} />
+                  <Route exact path="/products" component={ProductPage} />
 
-                  <Route path="/add-product" component={AddProductPage} />
+                  <Route exact path="/add-product" component={AddProductPage} />
 
-                  <Route path="/accounts" component={AccountsPage} />
+                  <Route exact path="/accounts" component={AccountsPage} />
 
                 </Switch>
               </div>
@@ -63,4 +51,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapGlobalStateToProps = (globalState) => {
+  return {
+      userLoggedInStatus: globalState.loggedInStatus
+  }
+}
+
+export default connect(mapGlobalStateToProps)(App);
