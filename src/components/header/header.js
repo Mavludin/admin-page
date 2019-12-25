@@ -1,11 +1,15 @@
 import React from 'react';
 import './header.css';
 
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
 class Header extends React.Component {
+
+    state = {
+        showHiddenMenu : false
+    }
 
     toDashBoard = React.createRef();
     toProducts = React.createRef();
@@ -16,93 +20,89 @@ class Header extends React.Component {
         if (!this.props.userLoggedInStatus) {
             e.preventDefault();
             alert('You need to Log-In first!');
-        }
+        } else this.setState({showHiddenMenu: !this.state.showHiddenMenu});
     }
-
-    showHiddenMenu = () => {
-        this.hiddenMenu.current.style.transform = 'translateX(0%)';
-    }
-
-    closeHiddenMenu = () => {
-        this.hiddenMenu.current.style.transform = 'translateX(-100%);';
+    
+    onToggle = () => {
+        this.setState({showHiddenMenu: !this.state.showHiddenMenu});
     }
 
     render() {
         return (
             <header>
                 <div className="header-content container">
-                    <Link to="/"><h1>Product Admin</h1></Link>
+                    <NavLink to="/"><h1>Product Admin</h1></NavLink>
                     <nav className="top-menu">
-                        <Link ref={this.toDashBoard} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/dashboard">
+                        <NavLink activeClassName='is-active' ref={this.toDashBoard} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/dashboard">
                             <div>
                                 <i className="fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p> 
                             </div>
-                        </Link>
+                        </NavLink>
     
-                        <Link ref={this.toProducts} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/products">
+                        <NavLink activeClassName='is-active' ref={this.toProducts} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/products">
                             <div>
                                 <i className="fas fa-shopping-cart"></i>
                                 <p>Products</p> 
                             </div>
-                        </Link>
+                        </NavLink>
     
-                        <Link ref={this.toAccounts} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/accounts">
+                        <NavLink activeClassName='is-active' ref={this.toAccounts} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/accounts">
                             <div>
                                 <i className="far fa-user"></i>
                                 <p>Accounts</p> 
                             </div>
-                        </Link>
+                        </NavLink>
     
                     </nav>
     
                     {
                         this.props.userLoggedInStatus ?
                         
-                        <Link onClick={this.props.onUserLoggedOut} className="nav-link logout" to="/login">
+                        <NavLink onClick={this.props.onUserLoggedOut} className="nav-link logout" to="/login">
                             <div>
                                 { JSON.parse(localStorage[('userData')]).userName }, <span>Logout</span>
                             </div>
-                        </Link>
+                        </NavLink>
     
                         : null
                     }
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-                        <i class="fas fa-bars tm-nav-icon"></i>
+                    <button onClick={this.onToggle} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+                        <i className="fas fa-bars tm-nav-icon"></i>
                     </button>
 
-                    <nav ref={this.hiddenMenu} className='hidden-menu'>
+                    <nav ref={this.hiddenMenu} className={this.state.showHiddenMenu ? 'hidden-menu show' : 'hidden-menu'}>
 
-                        <Link ref={this.toDashBoard} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/dashboard">
+                        <NavLink activeClassName='is-active' ref={this.toDashBoard} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/dashboard">
                             <div>
                                 <i className="fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p> 
                             </div>
-                        </Link>
+                        </NavLink>
     
-                        <Link ref={this.toProducts} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/products">
+                        <NavLink activeClassName='is-active' ref={this.toProducts} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/products">
                             <div>
                                 <i className="fas fa-shopping-cart"></i>
                                 <p>Products</p> 
                             </div>
-                        </Link>
+                        </NavLink>
     
-                        <Link ref={this.toAccounts} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/accounts">
+                        <NavLink activeClassName='is-active' ref={this.toAccounts} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/accounts">
                             <div>
                                 <i className="far fa-user"></i>
                                 <p>Accounts</p> 
                             </div>
-                        </Link>
+                        </NavLink>
 
                         {
                             this.props.userLoggedInStatus ?
                             
-                            <Link onClick={this.props.onUserLoggedOut} className="nav-link" to="/login">
+                            <NavLink onClick={this.props.onUserLoggedOut} className="nav-link" to="/login">
                                 <div>
-                                    { JSON.parse(localStorage[('userData')]).userName }, <span>Logout</span>
+                                    { JSON.parse(localStorage[('userData')]).userName } <span>, Logout</span>
                                 </div>
-                            </Link>
+                            </NavLink>
         
                             : null
                          }

@@ -188,9 +188,9 @@ class AccountsPage extends React.Component {
         return (
             <div className="accounts-page container mt-5">
                 <div className="accounts-content">
-                    <h2 class="tm-block-title">List of Accounts</h2>
-                    <p class="text-white">Accounts</p>
-                    <select ref={this.selectingRole} onChange={this.onRenderDataBySelect} class="custom-select">
+                    <h2 className="tm-block-title">List of Accounts</h2>
+                    <p className="text-white">Accounts</p>
+                    <select ref={this.selectingRole} onChange={this.onRenderDataBySelect} className="custom-select">
                         <option value="0">Select account</option>
                         <option value="1">Admin</option>
                         <option value="2">Customer</option>
@@ -199,17 +199,17 @@ class AccountsPage extends React.Component {
                     </select>
                 </div>
 
-                <div class="row tm-content-row">
-                    <div class="tm-block-col tm-col-avatar">
-                        <div class="tm-bg-primary-dark tm-block tm-block-avatar">
-                            <h2 class="tm-block-title">Change Avatar</h2>
-                            <div class="tm-avatar-container">
-                                <img src={this.state.profilePic} ref={this.profilePic} alt="Avatar" class="tm-avatar img-fluid mb-4" />
+                <div className="row tm-content-row">
+                    <div className="tm-block-col tm-col-avatar">
+                        <div className="tm-bg-primary-dark tm-block tm-block-avatar">
+                            <h2 className="tm-block-title">Change Avatar</h2>
+                            <div className="tm-avatar-container">
+                                <img src={this.state.profilePic} ref={this.profilePic} alt="Avatar" className="tm-avatar img-fluid mb-4" />
                                 
                                 {
                                     this.state.profilePic && this.state.profilePic !== defaultAvatar
                                     ?
-                                    <a onClick={(e)=>this.deletePic(e)} href="/" class="tm-avatar-delete-link">
+                                    <a onClick={(e)=>this.deletePic(e)} href="/" className="tm-avatar-delete-link">
                                         <i className="far fa-trash-alt tm-product-delete-icon"></i>
                                     </a>
 
@@ -218,44 +218,44 @@ class AccountsPage extends React.Component {
                                 }
 
                             </div>
-                            <button onClick={()=>this.uploadPic.click()} class="btn btn-primary btn-block text-uppercase">
+                            <button onClick={()=>this.uploadPic.click()} className="btn btn-primary btn-block text-uppercase">
                                 Upload New Photo
                             </button>
                             <input onChange={(e)=>this.onUploadFile(e)} accept=".jpg, .png, .bmp, .svg, .webp" ref={input => this.uploadPic = input} className="fileInput" type="file" style={{display: 'none'}} />
                         </div>
                     </div>
-                    <div class="tm-block-col tm-col-account-settings">
-                        <div class="tm-bg-primary-dark tm-block tm-block-settings">
-                        <h2 class="tm-block-title">Account Settings</h2>
-                            <form onSubmit={(e)=>e.preventDefault()} action="" class="tm-signup-form row">
-                                <div class="form-group col-lg-6">
-                                <label for="name">Account Name</label>
-                                <input ref={this.name} onChange={this.onHandleElements} value={this.state.name} id="name" name="name" type="text" class="form-control validate" />
+                    <div className="tm-block-col tm-col-account-settings">
+                        <div className="tm-bg-primary-dark tm-block tm-block-settings">
+                        <h2 className="tm-block-title">Account Settings</h2>
+                            <form onSubmit={(e)=>e.preventDefault()} action="" className="tm-signup-form row">
+                                <div className="form-group col-lg-6">
+                                <label htmlFor="name">Account Name</label>
+                                <input ref={this.name} onChange={this.onHandleElements} value={this.state.name} id="name" name="name" type="text" className="form-control validate" />
                                 </div>
-                                <div class="form-group col-lg-6">
-                                <label for="email">Account Email</label>
-                                <input ref={this.email} onChange={this.onHandleElements} value={this.state.email} id="email" name="email" type="email" class="form-control validate" />
+                                <div className="form-group col-lg-6">
+                                <label htmlFor="email">Account Email</label>
+                                <input ref={this.email} onChange={this.onHandleElements} value={this.state.email} id="email" name="email" type="email" className="form-control validate" />
                                 </div>
-                                <div class="form-group col-lg-6">
-                                <label for="password">Password</label>
-                                <input ref={this.password} onChange={this.onHandleElements} value={this.state.password} id="password" name="password" type="password" class="form-control validate" />
+                                <div className="form-group col-lg-6">
+                                <label htmlFor="password">Password</label>
+                                <input ref={this.password} onChange={this.onHandleElements} value={this.state.password} id="password" name="password" type="password" className="form-control validate" />
                                 </div>
-                                <div class="form-group col-lg-6">
-                                <label for="password2">Re-enter Password</label>
-                                <input ref={this.rePassword} onChange={this.onHandleElements} id="password2" name="password2" type="password" class="form-control validate" />
+                                <div className="form-group col-lg-6">
+                                <label htmlFor="password2">Re-enter Password</label>
+                                <input ref={this.rePassword} onChange={this.onHandleElements} id="password2" name="password2" type="password" className="form-control validate" />
                                 </div>
-                                <div class="form-group col-lg-6">
-                                <label for="phone">Phone</label>
-                                <input ref={this.phone} onChange={this.onHandleElements} value={this.state.phone} id="phone" name="phone" type="tel" class="form-control validate" />
+                                <div className="form-group col-lg-6">
+                                <label htmlFor="phone">Phone</label>
+                                <input ref={this.phone} onChange={this.onHandleElements} value={this.state.phone} id="phone" name="phone" type="tel" className="form-control validate" />
                                 </div>
-                                <div class="form-group col-lg-6">
-                                <label class="tm-hide-sm">&nbsp;</label>
-                                <button onClick={this.onUpdateProfile} type="submit" class="btn btn-primary btn-block text-uppercase">
+                                <div className="form-group col-lg-6">
+                                <label className="tm-hide-sm">&nbsp;</label>
+                                <button onClick={this.onUpdateProfile} type="submit" className="btn btn-primary btn-block text-uppercase">
                                     Update Your Profile
                                 </button>
                                 </div>
-                                <div class="col-12 form-group">
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                                <div className="col-12 form-group">
+                                <button type="submit" className="btn btn-primary btn-block text-uppercase">
                                     Delete Your Account
                                 </button>
                                 </div>
@@ -270,7 +270,7 @@ class AccountsPage extends React.Component {
 
                     <h2>Information Updated Successfully!</h2>
 
-                    <i onClick={this.closePopUp} class="fas fa-times-circle"></i>
+                    <i onClick={this.closePopUp} className="fas fa-times-circle"></i>
 
                 </div>
 

@@ -93,7 +93,7 @@ class CategoryBlock extends React.Component {
                         Add
                     </button>
 
-                    <i onClick={this.closePopUp} class="fas fa-times-circle"></i>
+                    <i onClick={this.closePopUp} className="fas fa-times-circle"></i>
 
                 </div>
 

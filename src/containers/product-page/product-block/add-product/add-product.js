@@ -118,7 +118,7 @@ class AddProductPage extends React.Component {
                             <div className="form-group mb-3 col-xs-12 col-sm-6 expire">
                                 <label htmlFor="expire_date">Expire Date
                                 </label>
-                                <input required ref={this.expireDate} onChange={this.onHandleElements} name="expire_date" type="date" className="expire_date form-control validate hasDatepicker" />
+                                <input required ref={this.expireDate} onChange={this.onHandleElements} name="expire_date" type="date" className="expire_date form-control validate" />
                             </div>
                             <div className="form-group mb-3 col-xs-12 col-sm-6 stock">
                                 <label htmlFor="stock">In Stock</label>

@@ -21,7 +21,7 @@ class App extends React.Component {
           <div className="App">
             <Header />
   
-              <div>
+              <main>
                 <Switch>
 
                   <Route exact path="/" render={() => (
@@ -42,7 +42,7 @@ class App extends React.Component {
                   <Route exact path="/accounts" component={AccountsPage} />
 
                 </Switch>
-              </div>
+              </main>
   
             <Footer />
           </div>

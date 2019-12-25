@@ -93,12 +93,12 @@ thead {
     color: #fff;
 }
 
-.table thead th {
+.order .table thead th {
     border-bottom: 0;
     vertical-align: bottom;
 }
 
-.table th, .table td {
+.order .table th, .order .table td {
     border-top: 1px solid #415a70;
     padding: 15px 25px;
     vertical-align: middle
