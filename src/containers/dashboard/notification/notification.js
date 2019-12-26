@@ -22,13 +22,19 @@ class NotificationList extends React.Component {
 
     return (
         <div className="notification">
-            <h2>Notification List</h2>
 
-            <div className="notification-block">
-                {renderingData}
-                {renderingData}
-                {renderingData}
+            <div>
+
+                <h2>Notification List</h2>
+                
+                <div className="notification-block">
+                        {renderingData}
+                        {renderingData}
+                        {renderingData}
+                </div>
+
             </div>
+            
         </div>
     );
   }

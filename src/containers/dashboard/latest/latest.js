@@ -50,6 +50,7 @@ class LatestHits extends React.Component {
   render() {
     return (
       <div>
+        <div>
           <h2>Latest Hits</h2>
           <Line 
               options={{
@@ -87,6 +88,7 @@ class LatestHits extends React.Component {
               }}
               data={this.getChartData}
           />
+        </div>
     </div>
     );
   }

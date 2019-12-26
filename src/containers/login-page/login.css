@@ -1,5 +1,5 @@
 .login-page {
-    margin: 57px 0 60px 0;
+    position: relative;
 }
 
 .login-form {
@@ -63,4 +63,35 @@
 .login-form button {
     margin-top: 1.5rem;
     margin-bottom: 15px;
+}
+
+.validation {
+    position: absolute;
+    top: 25%;
+    right: 8%;
+}
+
+.validation>div {
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.validation h3 {
+    margin: 0
+}
+
+.validation ul {
+    font-size: .9em;
+}
+
+@media screen and (max-width: 1280px) {
+    .validation {
+        right: 0
+    }
+}
+
+@media screen and (max-width: 1085px) {
+    .validation {
+        display: none;
+    }
 }

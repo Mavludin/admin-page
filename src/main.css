@@ -21,9 +21,8 @@ a {
     padding: 0 20px;
 }
 
-.mt-5{
-    margin-top: 3rem;
-    padding: 0 15px;
+main {
+    margin-top: 50px;
 }
 
 ::-webkit-scrollbar {
@@ -48,11 +47,7 @@ a {
         padding: 10px 20px;
     }
 
-    .mt-5 {
-        margin-top: 0;
-    }
-
     main {
-        margin-top: 65px;
+        margin-top: 105px;
     }
 }

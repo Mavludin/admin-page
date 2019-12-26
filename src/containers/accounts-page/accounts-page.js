@@ -186,7 +186,7 @@ class AccountsPage extends React.Component {
     render() {
 
         return (
-            <div className="accounts-page container mt-5">
+            <div className="accounts-page container">
                 <div className="accounts-content">
                     <h2 className="tm-block-title">List of Accounts</h2>
                     <p className="text-white">Accounts</p>

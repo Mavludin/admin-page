@@ -44,45 +44,47 @@ class Perform extends React.Component {
 
     return (
         <div>
-            <h2>Performance</h2>
-            <HorizontalBar 
-                options={{
-                    responsive: true,
-                    legend: {
-                        labels: {
-                            fontColor: "white",
-                        }
-                    },
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                fontColor: "white",
-                                beginAtZero: false
-
-                            },
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Hits',
+            <div>
+                <h2>Performance</h2>
+                <HorizontalBar 
+                    options={{
+                        responsive: true,
+                        legend: {
+                            labels: {
                                 fontColor: "white",
                             }
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: "white",
+                                    beginAtZero: false
 
-                        }],
-                        xAxes: [{
-                            ticks: {
-                                fontColor: "white",
-                                stepSize: 10,
-                                min: 20,
-                                max: 60
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Hits',
+                                    fontColor: "white",
+                                }
+
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: "white",
+                                    stepSize: 10,
+                                    min: 20,
+                                    max: 60
+                            }
+                        }]},
+                        elements: {
+                            point:{
+                                radius: 0
+                            }
                         }
-                    }]},
-                    elements: {
-                        point:{
-                            radius: 0
-                        }
-                    }
-                }}
-                data={this.getChartData}
-            />
+                    }}
+                    data={this.getChartData}
+                />
+            </div>
         </div>
     );
   }

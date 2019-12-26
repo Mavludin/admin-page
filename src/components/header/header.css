@@ -1,5 +1,6 @@
 header {
     background-color: #567086;
+    height: 95px;
 }
 
 .header-content {
@@ -33,7 +34,6 @@ h1 {
 
 header p {
     margin: 0;
-    /* margin-top: 10px; */
 }
 
 header a {
@@ -123,9 +123,7 @@ header p i {
 
 @media screen and (min-width: 800px) {
     .hidden-menu {
-        height: 0;
-        box-shadow: none ;
-        overflow: hidden ;
+        display: none;
     }
 }
 

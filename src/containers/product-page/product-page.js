@@ -7,7 +7,7 @@ class ProductPage extends React.Component {
 
     render() {
         return (
-            <div className="product-page container mt-5">
+            <div className="product-page container">
                 <div className="product-content">
                     <ProductBlock />
                     <CategoryBlock />

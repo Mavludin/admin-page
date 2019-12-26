@@ -41,6 +41,7 @@ class StorageInfo extends React.Component {
 
     return (
       <div>
+        <div>
           <h2>Storage Information</h2>
           <Pie height={200}
               options={{
@@ -54,6 +55,7 @@ class StorageInfo extends React.Component {
               }}
               data={this.getChartData}
           />
+        </div>
       </div>
     );
   }

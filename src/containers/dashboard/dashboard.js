@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
 
     return (
 
-      <div className="dashboard container mt-5">
+      <div className="dashboard container">
 
         <p className="greeting">Welcome back, <b>{JSON.parse(localStorage[('userData')]).userName}</b></p>
 

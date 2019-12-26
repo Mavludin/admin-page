@@ -14,7 +14,7 @@
     box-shadow: 1px 1px 5px 0 #455c71;
     min-height: 350px;
     height: 100%;
-    width: 68%;
+    width: 66%;
     overflow: hidden;
     min-height: 725px;
 }
@@ -117,7 +117,6 @@ input[type="checkbox"] {
 }
 
 .category-block {
-    min-height: 650px;
     background-color: #435c70;
     padding: 40px;
     box-shadow: 1px 1px 5px 0 #455c71;
@@ -190,7 +189,7 @@ input[type="checkbox"] {
 }
 
 .inputCheck:hover, .deleteIcon:hover {
-    opacity: 0.7;
+    background-color: rgba(67,92,112, 0.7)
 }
 
 /* .product-table-container .table th, .product-table-container .table td {

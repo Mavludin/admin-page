@@ -9,7 +9,9 @@ class LoginPage extends React.Component {
 
     state = {
         userName: '',
-        userPassword: '' 
+        userPassword: '',
+        loginIsValid: false,
+        passIsValid: false
     }
 
     gettingDataFromBackend = () => {
@@ -23,40 +25,64 @@ class LoginPage extends React.Component {
 
     toLocalStorage = () => {
 
-        localStorage.setItem('userData', JSON.stringify({
-            'userName': this.state.userName,
-            'userPassword': this.state.userPassword,
-        }));
+        if (this.state.loginIsValid && this.state.passIsValid) {
 
-        this.props.onUserLoggedIn();
+            localStorage.setItem('userData', JSON.stringify({
+                'userName': this.state.userName,
+                'userPassword': this.state.userPassword,
+            }));
+    
+            this.props.onUserLoggedIn();
+    
+            if (localStorage['myBackEndData'] && localStorage['myBackEndData']) {
+                this.props.history.push('/dashboard');
+            } else {
+                this.gettingDataFromBackend();
+            }
+        } else alert('Login or password is invalid');
 
-        if (localStorage['myBackEndData']) {
-            this.props.history.push('/dashboard');
-        } else {
-            this.gettingDataFromBackend();
-        }
     }
 
     getUserName = (e) => {
-        this.setState({userName: e.target.value});
+
+        if (e.target.value) {
+            document.querySelector('.login-val').style.opacity = '1';
+        } else document.querySelector('.login-val').style.opacity = '0';
+
+        const userNamePattern = /^[a-zA-Z0-9]{3,}$/;
+
+        if (e.target.value.match(userNamePattern)) {
+            e.target.style.backgroundColor = 'green';
+            document.querySelector('.login-val').style.opacity = '0';
+            this.setState({userName: e.target.value});
+            this.setState({loginIsValid: true});
+        } else {
+            e.target.style.backgroundColor = '#54657d';
+            return false;
+        }
     }
 
     getPassword = (e) => {
+        
+        if (e.target.value) {
+            document.querySelector('.pass-val').style.opacity = '1';
+        } else document.querySelector('.pass-val').style.opacity = '0';
 
-        const userPasswordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+        const userPasswordPattern = /(?=^.{8,}$)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^A-Za-z0-9]).*/;
 
         if (e.target.value.match(userPasswordPattern)) {
             e.target.style.backgroundColor = 'green';
+            document.querySelector('.pass-val').style.opacity = '0';
             this.setState({userPassword: e.target.value});
+            this.setState({passIsValid: true});
         } else {
             e.target.style.backgroundColor = '#54657d';
-            return;
+            return false;
         }
 
     }
 
     componentDidMount() {
-
         if (!localStorage[('myBackEndData')]) {
             axios.get('https://reactmusicplayer-ab9e4.firebaseio.com/project-data.json')
             .then(response => {
@@ -67,7 +93,7 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <div className="login-page mt-5">
+            <div className="login-page">
                 <form className='login-form' onSubmit={(e)=>e.preventDefault(e)}>
                     <h3>Welcome to Dashboard, Login</h3>
                     <div> 
@@ -82,6 +108,27 @@ class LoginPage extends React.Component {
                         <button onClick={this.toLocalStorage}>Login</button>
                     </div>
                 </form>
+
+                <div className="validation">
+                    <div className="login-val">
+                        <h3>User login validation</h3>
+                        <ul>
+                            <li>Not less than 3 characters</li>
+                            <li>Only alphanumeric characters</li>
+                        </ul>
+                    </div>
+                    <div className="pass-val">
+                        <h3>User password validation</h3>
+                        <ul>
+                            <li>Not less than 8 characters</li>
+                            <li>Contains a digit</li>
+                            <li>Contains an uppercase letter</li>
+                            <li>Contains a lowercase letter</li>
+                            <li>A character not being alphanumeric</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         )
     }
