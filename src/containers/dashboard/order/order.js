@@ -45,22 +45,24 @@ class OrderList extends React.Component {
         <div className="order">
             <div>
                 <h2>Order List</h2>
-                <table className="table" >
-                    <thead>
-                        <tr>
-                            <th scope="col">ORDER NO.</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">OPERATORS</th>
-                            <th scope="col">LOCATION</th>
-                            <th scope="col">DISTANCE</th>
-                            <th scope="col">START DATE</th>
-                            <th scope="col">EST DELIVERY DUE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {renderingData}
-                    </tbody>
-                </table>
+                <div className="order-table-wrapper">
+                    <table className="table" >
+                        <thead>
+                            <tr>
+                                <th scope="col">ORDER NO.</th>
+                                <th scope="col">STATUS</th>
+                                <th scope="col">OPERATORS</th>
+                                <th scope="col">LOCATION</th>
+                                <th scope="col">DISTANCE</th>
+                                <th scope="col">START DATE</th>
+                                <th scope="col">EST DELIVERY DUE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {renderingData}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

@@ -6,31 +6,48 @@
 
 .product-block, .category-block {
     margin-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .product-block {
+    width: 70%;
+}
+
+.category-block {
+    width: 30%;
+}
+
+.category-content {
     background-color: #435c70;
     padding: 40px;
     box-shadow: 1px 1px 5px 0 #455c71;
     min-height: 350px;
-    height: 100%;
-    width: 66%;
-    overflow: hidden;
-    min-height: 725px;
 }
 
 .product-table-container {
-    max-height: 465px;
-    margin-bottom: 15px;
+    min-height: 350px;
+    padding: 40px;
+    box-shadow: 1px 1px 5px 0 #455c71;
+    background-color: #435c70;
+}
+
+.product-table-wrapper {
+    max-height: 435px;
     overflow-y: scroll;
+    overflow-x: auto;
+    width: 100%;
 }
 
 .table {
     background-color: #50697f;
     color: #fff;
-    font-size: 85%;
     margin-bottom: 0;
     width: 100%;
+}
+
+.product-table-container table th, .product-table-container table td {
+    width: calc(100%/6);
 }
 
 input {
@@ -116,14 +133,6 @@ input[type="checkbox"] {
     border: 2px solid #f5a623;
 }
 
-.category-block {
-    background-color: #435c70;
-    padding: 40px;
-    box-shadow: 1px 1px 5px 0 #455c71;
-    min-height: 350px;
-    height: 100%;
-}
-
 .tm-block-title {
     font-size: 1.1rem;
     font-weight: 700;
@@ -138,8 +147,12 @@ input[type="checkbox"] {
     overflow-y: scroll;
 }
 
-.table th, .table td {
-    padding: 18px;
+.product-block .table th, .product-block .table td {
+    padding: 18px 5px;
+}
+
+.category-block .table th, .category-block .table td {
+    padding: 18px 10px;
 }
 
 .mainCell {
@@ -154,12 +167,12 @@ input[type="checkbox"] {
     text-align: center;
 }
 
-.data-table>tr {
+.data-table>tbody>tr, .category-table>tbody>tr {
     transition: all 0.2s;
     cursor: pointer;
 }
 
-.data-table>tr:hover {
+.data-table>tbody>tr:hover, .category-table>tbody>tr:hover{
     background-color: rgba(0,0,0,.075);
 }
 
@@ -222,5 +235,24 @@ input[type="checkbox"] {
     .product-content {
         flex-direction: column;
         justify-content: center;
+    }
+
+    .product-table-wrapper>div>table, .data-table {
+        min-width: 1000px;
+    }
+
+    .category-block .table th, .category-block .table td {
+        padding: 18px 50px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .category-content, .product-table-container {
+        padding: 20px;
+    }
+
+    .category-block .table th, .category-block .table td {
+        padding: 18px 10px 18px 15px;
     }
 }

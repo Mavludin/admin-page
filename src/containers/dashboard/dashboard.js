@@ -23,10 +23,9 @@ class Dashboard extends React.Component {
             <Perform />
             <StorageInfo />
             <NotificationList />
+            <OrderList />
 
         </div>
-
-        <OrderList />
 
       </div>
     );

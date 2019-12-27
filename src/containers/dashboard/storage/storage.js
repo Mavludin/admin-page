@@ -40,7 +40,7 @@ class StorageInfo extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className="storage">
         <div>
           <h2>Storage Information</h2>
           <Pie height={200}

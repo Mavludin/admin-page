@@ -43,7 +43,7 @@ class Perform extends React.Component {
   render() {
 
     return (
-        <div>
+        <div className="performance">
             <div>
                 <h2>Performance</h2>
                 <HorizontalBar 

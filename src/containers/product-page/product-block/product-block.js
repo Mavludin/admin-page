@@ -96,25 +96,30 @@ class ProductBlock extends React.Component {
 
             <div className="product-block">
                 <div className="product-table-container">
-                    <table className="table table-hover tm-table-small tm-product-table">
-                        <tbody>
-                            <tr>
-                                <th scope="col">&nbsp;</th>
-                                <th scope="col">PRODUCT NAME</th>
-                                <th scope="col">CATEGORY</th>
-                                <th scope="col">UNIT SOLD</th>
-                                <th scope="col">IN STOCK</th>
-                                <th scope="col">EXPIRE DATE</th>
-                                <th scope="col">&nbsp;</th>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className="product-table-wrapper">
+                        <div style={{padding: '0 1px'}}>
+                            <table className="table table-hover tm-table-small tm-product-table">
+                                <tbody>
+                                    <tr>
+                                        <th style={{width: '50px'}} scope="col">&nbsp;</th>
+                                        <th scope="col">PRODUCT NAME</th>
+                                        <th scope="col">CATEGORY</th>
+                                        <th scope="col">UNIT SOLD</th>
+                                        <th scope="col">IN STOCK</th>
+                                        <th scope="col">EXPIRE DATE</th>
+                                        <th style={{width: '50px'}} scope="col">&nbsp;</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     
-                    <table className="table table-hover tm-table-small tm-product-table data-table">
-                        <tbody>        
-                            {renderingData}
-                        </tbody>
-                    </table>
+                        <table className="table table-hover tm-table-small tm-product-table data-table">
+                            <tbody>        
+                                {renderingData}
+                            </tbody>
+                        </table>
+
+                    </div>
 
                 </div>
 

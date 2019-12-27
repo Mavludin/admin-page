@@ -81,35 +81,38 @@ class CategoryBlock extends React.Component {
         
         return (
             <div className="category-block">
+                <div className="category-content">
 
-                <div onClick={this.closePopUp} ref={this.overlay} className="overlay"></div>
+                    <div onClick={this.closePopUp} ref={this.overlay} className="overlay"></div>
 
-                <div ref={this.popUp} className="add-category-popUp">
+                    <div ref={this.popUp} className="add-category-popUp">
 
-                    <label>Enter category name</label>
-                    <input ref={this.categoryInput} className="form-control" type="text" />
+                        <label>Enter category name</label>
+                        <input ref={this.categoryInput} className="form-control" type="text" />
 
-                    <button onClick={this.addNewCategory} className="btn btn-primary btn-block text-uppercase mb-3">
-                        Add
+                        <button onClick={this.addNewCategory} className="btn btn-primary btn-block text-uppercase mb-3">
+                            Add
+                        </button>
+
+                        <i onClick={this.closePopUp} className="fas fa-times-circle"></i>
+
+                    </div>
+
+                    <h2 className="tm-block-title">Product Categories</h2>
+
+                    <div className="category-table-container">
+                        <table className="table tm-table-small category-table">
+                            <tbody>
+                                {renderingData}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button onClick={this.showPopUp} className="btn btn-primary btn-block text-uppercase mb-3">
+                        Add new category
                     </button>
 
-                    <i onClick={this.closePopUp} className="fas fa-times-circle"></i>
-
                 </div>
-
-                <h2 className="tm-block-title">Product Categories</h2>
-
-                <div className="category-table-container">
-                    <table className="table tm-table-small tm-product-table">
-                        <tbody>
-                            {renderingData}
-                        </tbody>
-                    </table>
-                </div>
-
-                <button onClick={this.showPopUp} className="btn btn-primary btn-block text-uppercase mb-3">
-                    Add new category
-                </button>
 
             </div>
         )
