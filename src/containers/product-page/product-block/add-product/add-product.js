@@ -88,23 +88,23 @@ class AddProductPage extends React.Component {
 
     render() {
         return (
-            <div className="add-product-page mt-5">
-                <h2 className="tm-block-title d-inline-block">Add Product</h2>
+            <div className="add-product-page">
+                <h2 className="tm-block-title">Add Product</h2>
                 
                 <div className='add-product-blocks'>
 
                     <form action="" onSubmit={(e)=>{e.preventDefault();}} className="tm-edit-product-form">
                         <div className="form-group mb-3">
                             <label htmlFor="name">Product Name</label>
-                            <input ref={this.productName} onChange={this.onHandleElements} name="name" type="text" className="form-control validate name" required />
+                            <input ref={this.productName} onChange={this.onHandleElements} name="name" type="text" className="form-control name" required />
                         </div>
                         <div className="form-group mb-3">
                             <label htmlFor="description">Description</label>
-                            <textarea ref={this.description} onChange={this.onHandleElements} className="form-control validate" rows="3" required></textarea>
+                            <textarea ref={this.description} onChange={this.onHandleElements} className="form-control" rows="3" required></textarea>
                         </div>
                         <div className="form-group mb-3">
                             <label htmlFor="category">Category</label>
-                            <select ref={this.productCategory} onChange={this.onHandleElements} className="custom-select tm-select-accounts category" required>
+                            <select ref={this.productCategory} onChange={this.onHandleElements} className="custom-select" required>
                                 <option defaultValue="">Select category</option>
                                 <option defaultValue="1">New Arrival</option>
                                 <option defaultValue="2">Most Popular</option>
@@ -118,25 +118,25 @@ class AddProductPage extends React.Component {
                             <div className="form-group mb-3 col-xs-12 col-sm-6 expire">
                                 <label htmlFor="expire_date">Expire Date
                                 </label>
-                                <input required ref={this.expireDate} onChange={this.onHandleElements} name="expire_date" type="date" className="expire_date form-control validate" />
+                                <input required ref={this.expireDate} onChange={this.onHandleElements} name="expire_date" type="date" className="expire_date form-control" />
                             </div>
                             <div className="form-group mb-3 col-xs-12 col-sm-6 stock">
                                 <label htmlFor="stock">In Stock</label>
-                                <input ref={this.stockUnits} onChange={this.onHandleElements} name="stock" type="text" className="form-control validate stock" required />
+                                <input ref={this.stockUnits} onChange={this.onHandleElements} name="stock" type="text" className="form-control stock" required />
                             </div>
                             <div className="form-group mb-3 col-xs-12 col-sm-6 sold">
                                 <label htmlFor="sold">Sold</label>
-                                <input ref={this.soldUnits} onChange={this.onHandleElements} name="sold" type="text" className="form-control validate sold" required />
+                                <input ref={this.soldUnits} onChange={this.onHandleElements} name="sold" type="text" className="form-control sold" required />
                             </div>
                         </div>
 
                     </form>
 
                     <div className="upload-image">
-                        <div className="tm-product-img-dummy mx-auto">
+                        <div className="tm-product-img-dummy">
                             <i className="fas fa-cloud-upload-alt tm-upload-icon" onClick={this.onImageInput}></i>
                         </div>
-                        <div className="custom-file mt-3 mb-3">
+                        <div className="custom-fil mb-3">
                             <input onChange={(e)=>{this.onUploadFile(e)}} accept=".jpg, .png, .bmp, .svg, .webp" ref={input => this.imageInput = input} className="fileInput" type="file" style={{display: 'none'}} />
                             <input type="button" className="btn btn-primary btn-block mx-auto" defaultValue="UPLOAD PRODUCT IMAGE" onClick={this.onImageInput} />
                         </div>

@@ -205,10 +205,6 @@ input[type="checkbox"] {
     background-color: rgba(67,92,112, 0.7)
 }
 
-/* .product-table-container .table th, .product-table-container .table td {
-    padding: 15px;
-} */
-
 .product-table-container>table>tbody>tr>th {
     font-size: 100%;
     padding: 15px 18px 15px 0px;

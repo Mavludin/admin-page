@@ -27,7 +27,7 @@ class OrderList extends React.Component {
 
         return (
             <tr key={pos+1}>
-                <th scope="row"><b>#{item.orderNo}</b></th>
+                <th><b>#{item.orderNo}</b></th>
                 <td>
                     <div className={classStr}>
                     </div>{item.status}
@@ -49,13 +49,13 @@ class OrderList extends React.Component {
                     <table className="table" >
                         <thead>
                             <tr>
-                                <th scope="col">ORDER NO.</th>
-                                <th scope="col">STATUS</th>
-                                <th scope="col">OPERATORS</th>
-                                <th scope="col">LOCATION</th>
-                                <th scope="col">DISTANCE</th>
-                                <th scope="col">START DATE</th>
-                                <th scope="col">EST DELIVERY DUE</th>
+                                <th>ORDER NO.</th>
+                                <th>STATUS</th>
+                                <th>OPERATORS</th>
+                                <th>LOCATION</th>
+                                <th>DISTANCE</th>
+                                <th>START DATE</th>
+                                <th>EST DELIVERY DUE</th>
                             </tr>
                         </thead>
                         <tbody>

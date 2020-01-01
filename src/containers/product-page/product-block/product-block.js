@@ -98,22 +98,22 @@ class ProductBlock extends React.Component {
                 <div className="product-table-container">
                     <div className="product-table-wrapper">
                         <div style={{padding: '0 1px'}}>
-                            <table className="table table-hover tm-table-small tm-product-table">
+                            <table className="table">
                                 <tbody>
                                     <tr>
-                                        <th style={{width: '50px'}} scope="col">&nbsp;</th>
-                                        <th scope="col">PRODUCT NAME</th>
-                                        <th scope="col">CATEGORY</th>
-                                        <th scope="col">UNIT SOLD</th>
-                                        <th scope="col">IN STOCK</th>
-                                        <th scope="col">EXPIRE DATE</th>
-                                        <th style={{width: '50px'}} scope="col">&nbsp;</th>
+                                        <th style={{width: '50px'}}>&nbsp;</th>
+                                        <th>PRODUCT NAME</th>
+                                        <th>CATEGORY</th>
+                                        <th>UNIT SOLD</th>
+                                        <th>IN STOCK</th>
+                                        <th>EXPIRE DATE</th>
+                                        <th style={{width: '50px'}}>&nbsp;</th>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     
-                        <table className="table table-hover tm-table-small tm-product-table data-table">
+                        <table className="table data-table">
                             <tbody>        
                                 {renderingData}
                             </tbody>

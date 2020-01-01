@@ -31,9 +31,19 @@ class App extends React.Component {
                     <Redirect to="/login" />
                   )}/>
 
-                  <Route exact path="/dashboard" render={props => <Dashboard {...props} />} />
+                  <Route exact path="/login" render={(props) => (
+                    !this.props.userLoggedInStatus ?
+                    <LoginPage {...props} />
+                    :
+                    <Redirect to="/dashboard" />
+                  )} />
 
-                  <Route exact path="/login" render={ props => <LoginPage {...props} />} />
+                  <Route exact path="/dashboard" render={(props) => (
+                    this.props.userLoggedInStatus ?
+                    <Dashboard {...props} />
+                    :
+                    <Redirect to="/login" />
+                  )} />
 
                   <Route exact path="/products" component={ProductPage} />
 

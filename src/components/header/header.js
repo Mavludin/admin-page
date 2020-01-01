@@ -43,7 +43,7 @@ class Header extends React.Component {
                         <NavLink activeClassName='is-active' ref={this.toProducts} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/products">
                             <div>
                                 <i className="fas fa-shopping-cart"></i>
-                                <p>Products</p> 
+                                <p>Products</p>
                             </div>
                         </NavLink>
     
@@ -98,7 +98,7 @@ class Header extends React.Component {
                         {
                             this.props.userLoggedInStatus ?
                             
-                            <NavLink onClick={this.props.onUserLoggedOut} className="nav-link" to="/login">
+                            <NavLink onClick={this.props.onUserLoggedOut} className="nav-link" to="/">
                                 <div>
                                     { JSON.parse(localStorage[('userData')]).userName } <span>, Logout</span>
                                 </div>
