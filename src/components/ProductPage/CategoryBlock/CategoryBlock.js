@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './category-block.css';
+import './CategoryBlock.css';
 
 class CategoryBlock extends React.Component {
 

@@ -149,14 +149,17 @@ input[type="checkbox"] {
 
 .product-block .table th, .product-block .table td {
     padding: 18px 5px;
+    height: 80px;
 }
 
 .category-block .table th, .category-block .table td {
     padding: 18px 10px;
 }
 
-.mainCell {
+.mainRow {
     padding: 0 !important;
+    border: 1px solid #415a70;
+    width: 100%;
 }
 
 .tableDesc {

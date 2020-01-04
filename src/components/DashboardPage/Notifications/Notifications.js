@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../../Containers/DashboardPage/DashboardPage.css';
 
 class NotificationList extends React.Component {
 

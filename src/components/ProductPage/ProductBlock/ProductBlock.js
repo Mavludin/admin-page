@@ -9,6 +9,17 @@ class ProductBlock extends React.Component {
         checkedItems: []
     }
 
+    uncheckAllItems = () => {
+        
+        [...document.querySelectorAll('input[type=checkbox]')].map(item=> {
+            if (item.checked) {
+                item.checked = false;
+                item.style.backgroundColor = '#394e64';
+             }
+         });
+
+    }
+
     removeProduct = (pos,e) => {
         e.preventDefault();
 
@@ -20,10 +31,11 @@ class ProductBlock extends React.Component {
         wholeStorage.productsPage.products = tempArr;
         localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
         this.setState({productData: tempArr});
+
+        this.uncheckAllItems();
     }
 
     onChecked = (pos,e) => {
-
         const tempData = this.state.checkedItems;
 
         if (e.target.checked) {
@@ -41,52 +53,40 @@ class ProductBlock extends React.Component {
     }
 
     removeMultipleElements = () => {
-        const tempArr = this.state.productData;
 
         let wholeStorage = JSON.parse(localStorage[('myBackEndData')]);
+        const tempArr = this.state.productData;
 
-        this.state.checkedItems.map(item=>{
-            tempArr.splice(item,1)
-        })
-
-        wholeStorage.productsPage.products = tempArr;
+        const indexSet = new Set(this.state.checkedItems);        
+        const arrayWithValuesRemoved = tempArr.filter((item, i) => !indexSet.has(i));
+        
+        wholeStorage.productsPage.products = arrayWithValuesRemoved;
         localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
-        this.setState({productData: tempArr});
-    }
 
+        this.setState({productData: arrayWithValuesRemoved, checkedItems: []});
+        
+        this.uncheckAllItems();
+    }
 
     render() {
 
         const renderingData = this.state.productData.map((item,pos) => {
             return (
-                <tr key={pos+1}>
-                    <td className="mainCell">
-                        <table className="collapsed" style={{borderCollapse: 'collapse'}}>
-                            <tbody>
-                                <tr className="topRow">
-                                    <td className="inputCheck" rowSpan="2">
-                                        <label htmlFor={`product-${pos+1}`}>
-                                            <input onChange={(e)=>{this.onChecked(pos,e)}} type="checkbox" id={`product-${pos+1}`}/>
-                                        </label>
-                                    </td>
-                                    <td className="tm-product-name">{item.name}</td>
-                                    <td>{item.category}</td>
-                                    <td>{item.unitSold}</td>
-                                    <td>{item.stock}</td>
-                                    <td>{item.expireDate}</td>
-                                    <td className="deleteIcon" rowSpan="2">
-                                        <a href='/' onClick={(e)=>this.removeProduct(pos,e)} className="tm-product-delete-link">
-                                            <i className="far fa-trash-alt tm-product-delete-icon"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr className="bottomRow">
-                                    <td colSpan="5">
-                                        {item.description}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <tr className="mainRow" key={pos+1}>
+                    <td className="inputCheck">
+                        <label htmlFor={`product-${pos+1}`}>
+                            <input onChange={(e)=>{this.onChecked(pos,e)}} type="checkbox" id={`product-${pos+1}`}/>
+                        </label>
+                    </td>
+                    <td className="tm-product-name">{item.name}</td>
+                    <td className="tm-product-category">{item.category}</td>
+                    <td className="tm-product-sold">{item.unitSold}</td>
+                    <td className="tm-product-stock">{item.stock}</td>
+                    <td className="tm-product-expire">{item.expireDate}</td>
+                    <td className="deleteIcon">
+                        <a href='/' onClick={(e)=>this.removeProduct(pos,e)} className="tm-product-delete-link">
+                            <i className="far fa-trash-alt tm-product-delete-icon"></i>
+                        </a>
                     </td>
                 </tr>
             )
@@ -123,7 +123,7 @@ class ProductBlock extends React.Component {
 
                 </div>
 
-                <Link to="/add-product" className="btn btn-primary btn-block text-uppercase mb-3">Add new product</Link>
+                <Link to="/products/add" className="btn btn-primary btn-block text-uppercase mb-3">Add new product</Link>
                 <button onClick={this.removeMultipleElements} className="btn btn-primary btn-block text-uppercase">
                     Delete selected products
                 </button>

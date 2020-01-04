@@ -10,7 +10,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: #394f62;
-    box-shadow: 2px 2px 5px #000;
+    box-shadow: 1px 1px 4px 0 #455c71;
     z-index: 5;
 
     align-items: center;
@@ -20,9 +20,10 @@
 
 .fa-times-circle {
     position: absolute;
-    top: 2%;
+    top: 4%;
     right: 2%;
-    color: black;
+    color: white;
+    cursor: pointer;
 }
 
 .overlay {

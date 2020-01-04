@@ -1,5 +1,5 @@
 import React from 'react';
-import './header.css';
+import './Header.css';
 
 import { NavLink } from 'react-router-dom';
 
@@ -19,8 +19,7 @@ class Header extends React.Component {
     onHandleRedirect = (e) => {
         if (!this.props.userLoggedInStatus) {
             e.preventDefault();
-            alert('You need to Log-In first!');
-        } else this.setState({showHiddenMenu: !this.state.showHiddenMenu});
+        } else this.setState({showHiddenMenu: false});
     }
     
     onToggle = () => {

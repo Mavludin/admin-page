@@ -1,13 +1,13 @@
 import React from 'react';
 import './main.css';
 
-import LoginPage from './containers/login-page/login-page';
-import Header from './components/header/header';
-import Footer from './components/footer/footer';
-import Dashboard from './containers/dashboard/dashboard';
-import ProductPage from './containers/product-page/product-page';
-import AddProductPage from './containers/product-page/product-block/add-product/add-product';
-import AccountsPage from './containers/accounts-page/accounts-page';
+import LoginPage from './Containers/LoginPage/LoginPage';
+import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
+import DashboardPage from './Containers/DashboardPage/DashboardPage';
+import ProductPage from './Containers/ProductPage/ProductPage';
+import AddProductPage from './Components/ProductPage/ProductBlock/AddProductPage/AddProductPage';
+import AccountsPage from './Containers/AccountsPage/AccountsPage';
 
 import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
 
@@ -40,16 +40,31 @@ class App extends React.Component {
 
                   <Route exact path="/dashboard" render={(props) => (
                     this.props.userLoggedInStatus ?
-                    <Dashboard {...props} />
+                    <DashboardPage {...props} />
                     :
                     <Redirect to="/login" />
                   )} />
 
-                  <Route exact path="/products" component={ProductPage} />
+                  <Route exact path="/products" render={(props) => (
+                    this.props.userLoggedInStatus ?
+                    <ProductPage {...props} />
+                    :
+                    <Redirect to="/login" />
+                  )} />
 
-                  <Route exact path="/add-product" component={AddProductPage} />
+                  <Route exact path="/products/add" render={(props) => (
+                    this.props.userLoggedInStatus ?
+                    <AddProductPage {...props} />
+                    :
+                    <Redirect to="/login" />
+                  )} />
 
-                  <Route exact path="/accounts" component={AccountsPage} />
+                  <Route exact path="/accounts" render={(props) => (
+                    this.props.userLoggedInStatus ?
+                    <AccountsPage {...props} />
+                    :
+                    <Redirect to="/login" />
+                  )} />
 
                 </Switch>
               </main>

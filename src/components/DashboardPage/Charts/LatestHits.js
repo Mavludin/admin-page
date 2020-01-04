@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../../Containers/DashboardPage/DashboardPage.css';
 
 import { Line } from 'react-chartjs-2';
 

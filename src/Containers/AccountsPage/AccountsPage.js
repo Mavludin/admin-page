@@ -1,5 +1,5 @@
 import React from 'react';
-import './accounts-page.css';
+import './AccountsPage.css';
 import defaultAvatar from './img/default-avatar.png';
 
 class AccountsPage extends React.Component {
@@ -266,12 +266,9 @@ class AccountsPage extends React.Component {
 
                 <div onClick={this.closePopUp} ref={this.overlay} className="overlay"></div>
 
-                <div ref={this.popUp} className="add-category-popUp">
-
+                <div ref={this.popUp} className="confirm-popUp">
                     <h2>Information Updated Successfully!</h2>
-
-                    <i onClick={this.closePopUp} className="fas fa-times-circle"></i>
-
+                    <button onClick={this.closePopUp}>Okay</button>
                 </div>
 
             </div>

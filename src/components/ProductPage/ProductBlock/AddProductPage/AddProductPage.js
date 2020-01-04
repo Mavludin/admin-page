@@ -1,12 +1,11 @@
 import React from 'react';
-import './add-product.css';
+import './AddProductPage.css';
 
 class AddProductPage extends React.Component {
 
     imageInput = React.createRef();
     productName = React.createRef();
     productCategory = React.createRef();
-    description = React.createRef();
     expireDate = React.createRef();
     stockUnits = React.createRef();
     soldUnits = React.createRef();
@@ -14,7 +13,6 @@ class AddProductPage extends React.Component {
     state = {
         productName: '',
         productCategory: '',
-        description: '',
         expireDate: '',
         stockUnits: 0,
         soldUnits: 0
@@ -24,7 +22,6 @@ class AddProductPage extends React.Component {
         this.setState({
             productName: this.productName.current.value,
             productCategory: this.productCategory.current.selectedOptions[0].label,
-            description: this.description.current.value,
             expireDate: this.expireDate.current.value,
             stockUnits: this.stockUnits.current.value,
             soldUnits: this.soldUnits.current.value
@@ -52,7 +49,6 @@ class AddProductPage extends React.Component {
 
         const obj = {
             category: this.state.productCategory,
-            description: this.state.description,
             expireDate: this.state.expireDate,
             name: this.state.productName,
             stock: this.state.stockUnits,
@@ -100,7 +96,7 @@ class AddProductPage extends React.Component {
                         </div>
                         <div className="form-group mb-3">
                             <label htmlFor="description">Description</label>
-                            <textarea ref={this.description} onChange={this.onHandleElements} className="form-control" rows="3" required></textarea>
+                            <textarea className="form-control" rows="3"></textarea>
                         </div>
                         <div className="form-group mb-3">
                             <label htmlFor="category">Category</label>

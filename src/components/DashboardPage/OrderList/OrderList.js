@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../../Containers/DashboardPage/DashboardPage.css';
 
 class OrderList extends React.Component {
 

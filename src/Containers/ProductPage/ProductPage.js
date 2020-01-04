@@ -1,7 +1,8 @@
 import React from 'react';
-import './product.css';
-import ProductBlock from './product-block/product-block';
-import CategoryBlock from './category-block/category-block';
+import './ProductPage.css';
+
+import ProductBlock from '../../Components/ProductPage/ProductBlock/ProductBlock';
+import CategoryBlock from '../../Components/ProductPage/CategoryBlock/CategoryBlock';
 
 class ProductPage extends React.Component {
 
