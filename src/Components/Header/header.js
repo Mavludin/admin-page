@@ -26,6 +26,12 @@ class Header extends React.Component {
         this.setState({showHiddenMenu: !this.state.showHiddenMenu});
     }
 
+    componentDidUpdate() {
+        document.querySelectorAll('.hidden-menu a').onClick = () => {
+            this.setState({showHiddenMenu: false});
+        }
+    }
+
     render() {
         return (
             <header>
@@ -71,7 +77,7 @@ class Header extends React.Component {
                         <i className="fas fa-bars tm-nav-icon"></i>
                     </button>
 
-                    <nav ref={this.hiddenMenu} className={this.state.showHiddenMenu ? 'hidden-menu show' : 'hidden-menu'}>
+                    <nav ref={this.hiddenMenu} className={this.state.showHiddenMenu ? 'hidden-menu show' : 'hidden-menu hide'}>
 
                         <NavLink activeClassName='is-active' ref={this.toDashBoard} onClick={(e)=>this.onHandleRedirect(e)} className="nav-link" to="/dashboard">
                             <div>
@@ -97,7 +103,7 @@ class Header extends React.Component {
                         {
                             this.props.userLoggedInStatus ?
                             
-                            <NavLink onClick={this.props.onUserLoggedOut} className="nav-link" to="/">
+                            <NavLink onClick={()=>{this.props.onUserLoggedOut(); this.onHandleRedirect();}} className="nav-link" to="/">
                                 <div>
                                     { JSON.parse(localStorage[('userData')]).userName } <span>, Logout</span>
                                 </div>
@@ -122,7 +128,7 @@ const mapGlobalStateToProps = (globalState) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onUserLoggedOut: () => {dispatch({type: 'USER_LOGOUT'})}
+        onUserLoggedOut: () => {dispatch({type: 'USER_LOGOUT'});}
     }
 }
 

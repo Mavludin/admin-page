@@ -79,8 +79,6 @@ header p i {
 
 .hidden-menu {
     width: 180px;
-    height: 0;
-    overflow: hidden;
     position: absolute;
     padding: 0;
     top: 65px;
@@ -95,6 +93,12 @@ header p i {
     height: 180px;
     box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0px 1px;
     overflow: visible;
+}
+
+.hidden-menu.hide {
+    height: 0;
+    box-shadow: unset;
+    overflow: hidden;
 }
 
 .hidden-menu>a>div {

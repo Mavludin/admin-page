@@ -37,18 +37,13 @@ class AccountsPage extends React.Component {
 
     onHandleElements = () => {
 
-        if (this.selectingRole.current.selectedIndex !== 0) {
-            this.setState({
-                name: this.name.current.value,
-                email: this.email.current.value,
-                password: this.password.current.value,
-                phone: this.phone.current.value
-            });
+        this.setState({
+            name: this.name.current.value,
+            email: this.email.current.value,
+            password: this.password.current.value,
+            phone: this.phone.current.value
+        });
 
-        } else {
-            alert('Choose the account type');
-            return false;
-        }
 
     }
 
