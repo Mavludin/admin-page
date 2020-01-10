@@ -19,13 +19,17 @@ class AddProductPage extends React.Component {
     }
 
     onHandleElements = () => {
+        const DateOptions = {day: '2-digit', month: 'long', year: 'numeric'};
+        const pickedDate = new Intl.DateTimeFormat('en-GB', DateOptions).format(this.expireDate.current.valueAsDate);
+
         this.setState({
             productName: this.productName.current.value,
             productCategory: this.productCategory.current.selectedOptions[0].label,
-            expireDate: this.expireDate.current.value,
+            expireDate: pickedDate,
             stockUnits: this.stockUnits.current.value,
             soldUnits: this.soldUnits.current.value
         })
+
     }
 
     onImageInput = () => {
