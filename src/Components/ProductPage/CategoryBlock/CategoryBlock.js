@@ -5,7 +5,8 @@ import './CategoryBlock.css';
 class CategoryBlock extends React.Component {
 
     state = {
-        categoryList : JSON.parse(localStorage[('myBackEndData')]).productsPage.categories
+        categoryList : JSON.parse(localStorage[('myBackEndData')]).productsPage.categories,
+        popUpIsVisible: false
     }
 
     popUp = React.createRef();
@@ -15,16 +16,19 @@ class CategoryBlock extends React.Component {
     showPopUp = () => {
         this.popUp.current.style.display = 'flex';
         this.overlay.current.style.display = 'block';
+        this.setState({popUpIsVisible: true});
     }
 
     closePopUp = () => {
         this.popUp.current.style.display = 'none';
         this.overlay.current.style.display = 'none';
+        this.setState({popUpIsVisible: false});
     }
 
     addNewCategory = () => {
 
         if ( this.categoryInput.current.value !== '') {
+
             let wholeStorage = JSON.parse(localStorage[('myBackEndData')]);
             const updatedCategoryList = wholeStorage.productsPage.categories;
     
@@ -34,9 +38,11 @@ class CategoryBlock extends React.Component {
     
             localStorage.setItem('myBackEndData', JSON.stringify(wholeStorage));
             this.setState({categoryList: wholeStorage.productsPage.categories})
-        }
-        
-        this.closePopUp();
+            this.categoryInput.current.value = '';
+            this.closePopUp();
+
+        } else alert ('Enter the new category name');
+
     }
 
     removeCategory = (pos,e) => {
@@ -59,6 +65,13 @@ class CategoryBlock extends React.Component {
             if (e.keyCode === 27) {
                 this.closePopUp();
               }
+        }, false);
+
+        document.addEventListener("keydown", (e)=>{
+            if (e.keyCode === 13 && this.state.popUpIsVisible) {
+                this.addNewCategory();
+            }
+
         }, false);
     }
 
