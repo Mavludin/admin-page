@@ -7,29 +7,26 @@ import Storage from '../../Components/DashboardPage/Charts/Storage';
 import Notifications from '../../Components/DashboardPage/Notifications/Notifications';
 import OrderList from '../../Components/DashboardPage/OrderList/OrderList';
 
-class Dashboard extends React.Component {
+const Dashboard = () => {
 
-  render() {
+  return (
 
-    return (
+    <div className="dashboard container">
 
-      <div className="dashboard container">
+      <p className="greeting">Welcome back, <b>{JSON.parse(localStorage[('userData')]).userName}</b></p>
 
-        <p className="greeting">Welcome back, <b>{JSON.parse(localStorage[('userData')]).userName}</b></p>
+      <div className="charts">
 
-        <div className="charts">
-          
-            <LatestHits />
-            <Perform />
-            <Storage />
-            <Notifications />
-            <OrderList />
-
-        </div>
+        <LatestHits />
+        <Perform />
+        <Storage />
+        <Notifications />
+        <OrderList />
 
       </div>
-    );
-  }
+
+    </div>
+  );
 }
 
 export default Dashboard;

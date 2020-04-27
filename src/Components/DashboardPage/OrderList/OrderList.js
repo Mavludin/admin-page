@@ -1,33 +1,32 @@
 import React from 'react';
 import '../../../Containers/DashboardPage/DashboardPage.css';
 
-class OrderList extends React.Component {
+const OrderList = () => {
 
-  render() {
     const data = JSON.parse(localStorage[('myBackEndData')]).dasbhoardPage.orders;
 
-    const renderingData = data.map((item,pos)=>{
+    const renderingData = data.map((item, pos) => {
 
         let classStr = 'tm-status-circle';
 
         switch (item.status) {
             case 'Moving':
-                classStr+= ' moving';
+                classStr += ' moving';
                 break;
             case 'Pending':
-                classStr+= ' pending';
+                classStr += ' pending';
                 break;
             case 'Cancelled':
-                classStr+= ' cancelled';
+                classStr += ' cancelled';
                 break;
             case 'Delivered':
-                    classStr+= ' delivered';
-                    break;
+                classStr += ' delivered';
+                break;
             default: classStr = 'tm-status-circle';
         }
 
         return (
-            <tr key={pos+1}>
+            <tr key={pos + 1}>
                 <th><b>#{item.orderNo}</b></th>
                 <td>
                     <div className={classStr}>
@@ -67,7 +66,6 @@ class OrderList extends React.Component {
             </div>
         </div>
     );
-  }
 }
 
 export default OrderList;

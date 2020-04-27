@@ -3,13 +3,11 @@ import '../../../Containers/DashboardPage/DashboardPage.css';
 
 import { HorizontalBar } from 'react-chartjs-2';
 
-class Perform extends React.Component {
+const Perform = () => {
 
-  state = {
-    performanceData: {},
-    data: {
+    const data = {
         labels: [],
-        datasets: 
+        datasets:
             [
                 {
                     label: "# of Hits",
@@ -21,33 +19,31 @@ class Perform extends React.Component {
                 }
 
             ]
-      }
-  }
+    }
 
-  getChartData = () => {
+    const getChartData = () => {
 
-    const getCharts = JSON.parse(localStorage[('myBackEndData')]).dasbhoardPage.performance;
+        const getCharts = JSON.parse(localStorage[('myBackEndData')]).dasbhoardPage.performance;
 
-    const dependentData = Object.values(getCharts);
-    const mainLabels = Object.getOwnPropertyNames(getCharts);
-    const tempData = this.state.data;
+        const dependentData = Object.values(getCharts);
+        const mainLabels = Object.getOwnPropertyNames(getCharts);
+        const tempData = data;
 
-    tempData.labels = [...mainLabels];
-    tempData.datasets[0].data = [...dependentData];
-    tempData.datasets[0].backgroundColor = [
-        '#4ed6b8', '#3889fc', '#a8d582', '#db9c3f', '#9665c5', '#e95f50', '#cbcd69'
-    ];
+        tempData.labels = [...mainLabels];
+        tempData.datasets[0].data = [...dependentData];
+        tempData.datasets[0].backgroundColor = [
+            '#4ed6b8', '#3889fc', '#a8d582', '#db9c3f', '#9665c5', '#e95f50', '#cbcd69'
+        ];
 
-    return tempData;
-  }
+        return tempData;
+    }
 
-  render() {
 
     return (
         <div className="performance">
             <div>
                 <h2>Performance</h2>
-                <HorizontalBar 
+                <HorizontalBar
                     options={{
                         responsive: true,
                         legend: {
@@ -75,20 +71,20 @@ class Perform extends React.Component {
                                     stepSize: 10,
                                     min: 20,
                                     max: 60
-                            }
-                        }]},
+                                }
+                            }]
+                        },
                         elements: {
-                            point:{
+                            point: {
                                 radius: 0
                             }
                         }
                     }}
-                    data={this.getChartData}
+                    data={getChartData}
                 />
             </div>
         </div>
     );
-  }
 }
 
 export default Perform;
